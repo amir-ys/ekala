@@ -9,7 +9,7 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" key="t-menu"> Dashboard </li>
                 <li>
-                    <a href="{{ route('admin.dashboard') }}" class="waves-effect">
+                    <a href="{{ route('panel.dashboard') }}" class="waves-effect">
                         <i class="bx bx-home-circle"></i>
                         <span key="t-dashboards">Dashboards</span>
                     </a>

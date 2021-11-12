@@ -1,7 +1,7 @@
-@extends('admin.layouts.master')
+@extends('panel.layouts.master')
 @section('title' , 'Dashboard')
 @section('content')
-    @component('admin.components.breadcrumb')
+    @component('panel.components.breadcrumb')
         @slot('li_1') Dashboards @endslot
         @slot('title') Dashboard @endslot
     @endcomponent
