@@ -19,6 +19,7 @@ class BrandController extends Controller
             'name' => $request->name ,
            'status' => $request->status
         ]);
+        newFeedback(null , 'برند با موفقیت ایجاد شد ' );
         return back();
     }
 
@@ -33,12 +34,13 @@ class BrandController extends Controller
             'name' => $request->name ,
             'status' => $request->status
         ]);
+        newFeedback();
         return redirect()->route('panel.brands.index');
     }
 
     public function destroy(Brand $brand)
     {
         $brand->delete();
-        return back();
+        return response()->json(['message' => 'برند ' . $brand->name.' با موفقیت حذف شد.']);
     }
 }
