@@ -37,6 +37,6 @@ class Brand extends Model
     public function getStatusCssClassAttribute()
     {
         if ($this->status == self::STATUS_ACTIVE) return 'success';
-        if ($this->status == self::STATUS_DEACTIVE) return  'warning';
+        if ($this->status == self::STATUS_DEACTIVE) return  'danger';
     }
 }

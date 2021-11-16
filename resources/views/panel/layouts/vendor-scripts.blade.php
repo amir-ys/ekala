@@ -44,6 +44,7 @@
 {{--    });--}}
 {{--</script>--}}
 
+<script src="{{ URL::asset('assets/js/custom.js')}}"></script>
 @yield('script')
 
 <!-- App js -->

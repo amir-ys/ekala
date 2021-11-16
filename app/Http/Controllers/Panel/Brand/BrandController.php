@@ -21,4 +21,24 @@ class BrandController extends Controller
         ]);
         return back();
     }
+
+    public function edit( Brand $brand)
+    {
+        return view('panel.brands.edit' , compact('brand'));
+    }
+
+    public function update(BrandRequest $request ,Brand $brand)
+    {
+        $brand->update([
+            'name' => $request->name ,
+            'status' => $request->status
+        ]);
+        return redirect()->route('panel.brands.index');
+    }
+
+    public function destroy(Brand $brand)
+    {
+        $brand->delete();
+        return back();
+    }
 }
