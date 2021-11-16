@@ -1,0 +1,22 @@
+@font-face {
+    font-family: Vazir  ;
+    font-style: normal;
+    font-weight: normal;
+    src: url('/assets/fonts/Vazir.eot');
+    src: url('/assets/fonts/Vazir.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/Vazir.woff2') format('woff2'),
+    url('/assets/fonts/Vazir.woff') format('woff'),
+    url('/assets/fonts/Vazir.ttf') format('truetype');
+}
+
+
+
+body{
+    font-family: 'Vazir', Arial, sans-serif;
+}
+
+.invalid-feedback {
+    color: red;
+    font-size: 14px;
+    display: block;!important;
+}
