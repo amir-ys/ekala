@@ -17,7 +17,14 @@
                 <li>
                     <a href="{{ route('panel.brands.index') }}" class="waves-effect">
                         <i class="bx bx-palette"></i>
-                        <span key="t-dashboards">برندها</span>
+                        <span key="t-brand">برندها</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('panel.attributes.index') }}" class="waves-effect">
+                        <i class="bx bxs-cog"></i>
+                        <span key="t-attribute">ویژگی ها </span>
                     </a>
                 </li>
 {{--                <li>--}}
