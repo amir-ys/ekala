@@ -17,6 +17,11 @@ class CategoryController extends Controller
         return view('panel.categories.index' , compact('categories'));
     }
 
+    public function show(Category $category)
+    {
+        return view('panel.categories.show' , compact('category'));
+    }
+
     public function create()
     {
         $parentCategories = Category::where('parent_id' , null)->get();
@@ -38,9 +43,37 @@ class CategoryController extends Controller
        foreach ($request->attribute_ids as $attribute)
        $category->attributes()->attach( $attribute , [
            'is_filter' =>  in_array($attribute ,$request->attribute_filter_ids) ? 1 : 0 ,
-           'is_variation' =>   $attribute == $request->attribute_variation_ids ?   1 : 0
+           'is_variation' =>   $attribute == $request->attribute_variation_id ?   1 : 0
        ]);
-
+       newFeedback(null , 'دسته بندی با موفقیت ایجاد شد . ');
        return redirect()->route('panel.categories.index');
+    }
+
+    public function edit(Category $category)
+    {
+        $parentCategories = Category::where('parent_id' , null)->get();
+        $attributes = Attribute::all();
+        return view('panel.categories.edit' , compact('category'  ,'attributes' , 'parentCategories'));
+    }
+
+    public function update(CategoryRequest $request , Category $category)
+    {
+        $category->update([
+            'name' => $request->name ,
+            'parent_id' => $request->parent_id ,
+            'slug' => Str::slug($request->slug),
+            'status' => $request->status ,
+            'description' => $request->description ,
+            'icon' => $request->icon ,
+        ]);
+
+        $category->attributes()->detach();
+        foreach ($request->attribute_ids as $attribute)
+            $category->attributes()->attach( $attribute , [
+                'is_filter' =>  in_array($attribute ,$request->attribute_filter_ids) ? 1 : 0 ,
+                'is_variation' =>   $attribute == $request->attribute_variation_id ?   1 : 0
+            ]);
+        newFeedback(null , 'دسته بندی با موفقیت یروزرسانی شد . ');
+        return redirect()->route('panel.categories.index');
     }
 }

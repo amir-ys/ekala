@@ -1,5 +1,5 @@
 @extends('panel.layouts.master')
-@section('title') یرندها  @endsection
+@section('title') ساخت دسته بندی  @endsection
 @section('css')
     <link href="{{ URL::asset('/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
@@ -134,7 +134,7 @@
                                         <select class="select2 form-control select2-multiple" multiple
                                                 id="attribute-variation-select" name="attribute_variation_id">
                                         </select>
-                                        <x-validation-error field="attribute_variation_ids"/>
+                                        <x-validation-error field="attribute_variation_id"/>
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label>آیکون </label>
