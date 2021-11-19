@@ -60,7 +60,7 @@
 @endsection
 @section('content')
     @component('panel.components.breadcrumb')
-        @slot('title') ویژگی ها  @endslot
+        @slot('title') ساخت دسته بندی @endslot
         @slot('li_1')  داشبرد @endslot
     @endcomponent
     <div class="row">
@@ -156,7 +156,7 @@
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
                                     ذخیره
                                 </button>
-                                <a href="" class="btn btn-secondary waves-effect">
+                                <a href="{{ route('panel.categories.index') }}" class="btn btn-secondary waves-effect">
                                     لغو
                                 </a>
                             </div>

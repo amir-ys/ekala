@@ -1,5 +1,5 @@
 @extends('panel.layouts.master')
-@section('title') نمایش دسته بندی  @endsection
+@section('title') ویرایش دسته بندی  @endsection
 @section('css')
     <link href="{{ URL::asset('/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
@@ -59,7 +59,7 @@
 @endsection
 @section('content')
     @component('panel.components.breadcrumb')
-        @slot('title')  @endslot
+        @slot('title') ویرایش دسته بندی  @endslot
         @slot('li_1')  داشبرد @endslot
     @endcomponent
     <div class="row">
@@ -91,10 +91,9 @@
                                         <select class="form-control" name="parent_id">
                                             <option value> بدون والد</option>
                                             @foreach($parentCategories as $parentCategory)
-                                                <option value="{{ $category->id }}"
-                                                        @if($category->id == old('parent_id')) selected @endif
-                                                        @if($parentCategory->id == $category->id) selected @endif >
-                                                    {{ $category->name }} </option>
+                                                <option value="{{ $parentCategory->id }}"
+                                                        @if($parentCategory->id == $category->parent_id) selected @endif >
+                                                    {{ $parentCategory->name }} </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -103,8 +102,7 @@
                                         <select class="form-control" name="status">
                                             @foreach(\App\Models\Category::$statuses as $statusName => $status)
                                                 <option value="{{ $status }}"
-                                                        @if($status == old('status')) selected @endif
-                                                        @if($status == $category->id ) selected @endif
+                                                        @if($status == $category->status ) selected @endif
                                                 > {{ $statusName }} </option>
                                             @endforeach
                                         </select>
@@ -166,13 +164,11 @@
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
                                     ذخیره
                                 </button>
-                                <a href="" class="btn btn-secondary waves-effect">
+                                <a href="{{ route('panel.categories.index') }}" class="btn btn-secondary waves-effect">
                                     لغو
                                 </a>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
             </div>

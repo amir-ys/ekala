@@ -7,11 +7,11 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title" key="t-menu"> Dashboard </li>
+                <li class="menu-title" key="t-menu"> داشبرد </li>
                 <li>
                     <a href="{{ route('panel.dashboard') }}" class="waves-effect">
                         <i class="bx bx-home-circle"></i>
-                        <span key="t-dashboards">Dashboards</span>
+                        <span key="t-dashboards">داشبرد</span>
                     </a>
                 </li>
                 <li>

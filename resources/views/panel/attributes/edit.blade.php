@@ -1,9 +1,9 @@
 @extends('panel.layouts.master')
-@section('title' , 'ویرایش  ویژگی')
+@section('title' , 'ویرایش ویژگی')
 @section('content')
     @component('panel.components.breadcrumb')
-        @slot('li_1') ویرایش ویژگی @endslot
-        @slot('title') ویژگی @endslot
+        @slot('title') ویرایش ویژگی @endslot
+        @slot('li_1') ویژگی @endslot
     @endcomponent
     <div class="row">
         <div class="col-lg-8">

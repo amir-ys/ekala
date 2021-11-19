@@ -76,4 +76,10 @@ class CategoryController extends Controller
         newFeedback(null , 'دسته بندی با موفقیت یروزرسانی شد . ');
         return redirect()->route('panel.categories.index');
     }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return response()->json(['message' => 'دسته بندی ' .$category->name. '  با موفقیت حذف شد.']);
+    }
 }

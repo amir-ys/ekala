@@ -1,8 +1,8 @@
 @extends('panel.layouts.master')
-@section('title') یرندها  @endsection
+@section('title') دسته بندی ها   @endsection
 @section('content')
     @component('panel.components.breadcrumb')
-        @slot('title') ویژگی ها  @endslot
+        @slot('title') دسته بندی ها  @endslot
         @slot('li_1')  داشبرد @endslot
     @endcomponent
     <div class="row">

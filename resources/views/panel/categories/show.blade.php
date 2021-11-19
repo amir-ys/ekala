@@ -9,7 +9,7 @@
 @endsection
 @section('content')
     @component('panel.components.breadcrumb')
-        @slot('title')  @endslot
+        @slot('title') نمایش دسته بندی  @endslot
         @slot('li_1')  داشبرد @endslot
     @endcomponent
     <div class="row">

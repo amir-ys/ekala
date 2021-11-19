@@ -38,7 +38,7 @@ class CategoryRequest extends FormRequest
         return [
             'attribute_ids' => 'ویژگی' ,
             'attribute_filter_ids' => 'ویژگی های قابل فیلتر' ,
-            'attribute_variation_ids' => 'ویژگی های متغییر'
+            'attribute_variation_id' => 'ویژگی های متغییر'
         ];
     }
 }

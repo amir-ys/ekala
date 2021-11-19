@@ -64,7 +64,7 @@
                                     <td>{{ $brand->created_at }}</td>
                                     <td>
                                         <span
-                                            class="badge p-2 bg-{{ $brand->statusCssClass }}">{{ $brand->statusName() }}</span>
+                                            class="badge py-1 bg-{{ $brand->statusCssClass }}">{{ $brand->statusName() }}</span>
                                     </td>
                                     <td>
                                         {{--                                       <a href="" class="btn btn-sm bg-transparent d-inline "><i--}}

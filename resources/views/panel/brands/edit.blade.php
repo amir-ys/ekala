@@ -2,8 +2,8 @@
 @section('title' , 'ویرایش  برند')
 @section('content')
     @component('panel.components.breadcrumb')
-        @slot('li_1') ویرایش برند @endslot
-        @slot('title') برند @endslot
+        @slot('title') ویرایش برند @endslot
+        @slot('li_1') برند @endslot
     @endcomponent
     <div class="row">
         <div class="col-lg-8">
