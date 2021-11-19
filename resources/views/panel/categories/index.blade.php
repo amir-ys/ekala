@@ -16,7 +16,7 @@
                                     <a href="{{ route('panel.categories.create') }}"
                                        class="btn btn-primary btn-rounded waves-effect waves-light mb-2 me-2 w-100">
                                         <i class="mdi mdi-plus me-1"></i>
-                                        ساخت دسته یندی </a>
+                                        ساخت دسته بندی </a>
                                 </div>
                             </div>
                         </div>
@@ -28,7 +28,9 @@
                             <tr>
                                 <th>شناسه</th>
                                 <th>نام</th>
+                                <th>دسته پدر</th>
                                 <th> تاریخ ایجاد</th>
+                                <th> وضعیت </th>
                                 <th> عملیات</th>
                             </tr>
                             </thead>
@@ -37,8 +39,15 @@
                                 <tr>
                                     <td>{{ $category->id }}</td>
                                     <td>{{ $category->name }}</td>
+                                    <td>{{ $category->parent  ? $category->parent->name : 'ندارد'  }}</td>
                                     <td>{{ $category->created_at }}</td>
                                     <td>
+                                        <span
+                                            class="badge py-1 bg-{{ $category->statusCssClass }}">{{ $category->statusName() }}</span>
+                                    </td>
+                                    <td>
+                                         <a href="{{ route('panel.categories.show' , $category->id) }}" class="btn btn-sm bg-transparent d-inline "><i
+                                                  class="fas fa-eye fa-15m text-primary"></i></a>
                                         <a class="btn btn-sm bg-transparent d-inline"
                                            href="{{ route('panel.categories.edit' , $category->id) }}"><i
                                                 class="fas fa-pen fa-15m text-success"></i></a>

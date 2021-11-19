@@ -36,6 +36,26 @@
                 $('#attribute-variation-select').append(attributeVariationElement)
             })
         });
+        $("#attribute-select").on("select2:unselect", function (e) {
+            var select_val = $(e.currentTarget).val();
+            $('#attribute-filter-select').find('option').remove()
+            $('#attribute-variation-select').find('option').remove()
+        })
+
+        $('#attribute-select').select2( {
+            placeholder: "انتخاب ویژگی"
+        })
+
+        $('#attribute-filter-select').select2( {
+            placeholder: "انتخاب ویژگی قابل قبلتر"
+        })
+
+        $('#attribute-variation-select').select2( {
+            placeholder: "انتخاب ویژگی متغییر"
+        })
+
+
+
     </script>
 @endsection
 @section('content')
@@ -44,7 +64,7 @@
         @slot('li_1')  داشبرد @endslot
     @endcomponent
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-11">
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-3">
@@ -54,22 +74,26 @@
                                 <div class="row">
                                     <div class="col-md-3 mb-3">
                                         <label>نام</label>
-                                        <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                        <input type="text" class="form-control" name="name"
+                                               placeholder="نام"
+                                               value="{{ old('name') }}">
                                         <x-validation-error field="name"/>
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label>نام انگلیسی</label>
-                                        <input type="text" class="form-control" name="slug" value="{{ old('slug') }}">
+                                        <input type="text" class="form-control" name="slug"
+                                               placeholder="نام انگلیسی"
+                                               value="{{ old('slug') }}">
                                         <x-validation-error field="slug"/>
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label>والد</label>
                                         <select class="form-control" name="parent_id">
-                                            <option value="0">  یدون والد</option>
+                                            <option value>  بدون والد</option>
                                             @foreach($parentCategories as $category)
                                                 <option value="{{ $category->id }}"
-                                                        @if($category->id == old('parent_id')) selected @endif
-                                                > {{ $category->name }} </option>
+                                                        @if($category->id == old('parent_id')) selected @endif>
+                                                    {{ $category->name }} </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -108,13 +132,15 @@
                                     <div class="col-md-3 mb-3">
                                         <label>انتخاب ویژگی های متغییر</label>
                                         <select class="select2 form-control select2-multiple" multiple
-                                                id="attribute-variation-select" name="attribute_variation_ids[]">
+                                                id="attribute-variation-select" name="attribute_variation_id">
                                         </select>
                                         <x-validation-error field="attribute_variation_ids"/>
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label>آیکون </label>
-                                        <input type="text" class="form-control" name="icon" value="{{ old('icon') }}">
+                                        <input type="text" class="form-control" name="icon"
+                                               placeholder="آیکون"
+                                               value="{{ old('icon') }}">
                                     </div>
                                 </div>
                             </div>

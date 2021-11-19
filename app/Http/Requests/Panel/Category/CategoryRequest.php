@@ -19,11 +19,19 @@ class CategoryRequest extends FormRequest
         return [
             'name' => 'required|min:2' ,
             'slug' => ['required' , Rule::unique('categories' , 'slug')] ,
-            'parent_id' => 'required' ,
             'status' => ['required' , Rule::in(Category::$statuses)],
             'attribute_ids' => ['required' , 'array' ] ,
             'attribute_filter_ids' => ['required' , 'array' ] ,
-            'attribute_variation_ids' => ['required' , 'array' ]
+            'attribute_variation_id' => ['required' ]
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'attribute_ids' => 'ویژگی' ,
+            'attribute_filter_ids' => 'ویژگی های قابل فیلتر' ,
+            'attribute_variation_ids' => 'ویژگی های متغییر'
         ];
     }
 }
