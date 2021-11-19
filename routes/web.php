@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Panel\Attribute\AttributeController;
 use App\Http\Controllers\Panel\Brand\BrandController;
+use App\Http\Controllers\Panel\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,4 +16,5 @@ Route::get('/panel/dashboard', function () {
 Route::group(['prefix' => 'panel' , 'as' => 'panel.'] , function (){
     Route::resource('brands' , BrandController::class );
     Route::resource('attributes' , AttributeController::class );
+    Route::resource('categories' , CategoryController::class );
 });

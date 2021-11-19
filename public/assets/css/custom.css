@@ -16,7 +16,8 @@ body{
 }
 
 .invalid-feedback {
-    color: red;
+    color: #dd2323;
     font-size: 14px;
+    font-weight: bold;
     display: block;!important;
 }

@@ -27,6 +27,13 @@
                         <span key="t-attribute">ویژگی ها </span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('panel.categories.index') }}" class="waves-effect">
+                        <i class="bx bxs-cog"></i>
+                        <span key="t-categories">دسته بندی ها </span>
+                    </a>
+                </li>
 {{--                <li>--}}
 {{--                    <a href="javascript: void(0);" class="has-arrow waves-effect">--}}
 {{--                        <i class="bx bx-layout"></i>--}}
