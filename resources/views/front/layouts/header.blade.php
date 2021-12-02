@@ -176,11 +176,20 @@
                             </button>
                             <div class="setting-content">
                                 <ul class="text-right">
-                                    <li><a href="login.html">ورود</a></li>
+                                    @guest
+                                    <li><a href="{{ route('login') }}">ورود</a></li>
                                     <li>
-                                        <a href="register.html">ایجاد حساب</a>
+                                        <a href="{{ route('register') }}">ایجاد حساب</a>
                                     </li>
-                                    <li><a href="my-account.html">پروفایل</a></li>
+                                    @endguest
+                                    @auth
+                                    <li><a href="{{ route('panel.dashboard') }}">پروفایل</a></li>
+                                    <li><a onclick="event.preventDefault();document.getElementById('logout-form-' + '{{ auth()->id() }}' ).submit()"
+                                           href="{{ route('logout') }}">خروج از حساب</a></li>
+                                            <form action="{{ route('logout')}}" method="post" id="logout-form-{{ auth()->id() }}">
+                                                @csrf
+                                            </form>
+                                    @endauth
                                 </ul>
                             </div>
                         </div>
@@ -396,7 +405,7 @@
         <div class="mobile-curr-lang-wrap">
             <div class="single-mobile-curr-lang">
                 <ul class="text-right">
-                    <li class="my-3"><a href="login.html"> ورود </a></li>
+                    <li class="my-3"><a href="{{ route('login') }}"> ورود </a></li>
                     <li class="my-3">
                         <a href="register.html"> ایجاد حساب </a>
                     </li>

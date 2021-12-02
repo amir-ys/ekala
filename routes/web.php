@@ -22,3 +22,5 @@ Route::group(['prefix' => 'panel' , 'as' => 'panel.'] , function (){
     Route::resource('attributes' , AttributeController::class );
     Route::resource('categories' , CategoryController::class );
 });
+
+require __DIR__.'/auth.php';

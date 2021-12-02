@@ -23,7 +23,7 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-12 col-sm-6">
                             <div class="slider-single-img slider-animated-1">
 
-                                <img class="animated" src="assets/img/slider/1.jfif" alt="" />
+                                <img class="animated" src="/assets/img/slider/1.jfif" alt="" />
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-12 col-sm-6">
                             <div class="slider-single-img slider-animated-1">
 
-                                <img class="animated" src="assets/img/slider/2.jfif" alt="" />
+                                <img class="animated" src="/front/assets/img/slider/2.jfif" alt="" />
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="single-banner mb-30 scroll-zoom">
-                        <a href="product-details.html"><img class="animated" src="assets/img/banner/banner-6.png" alt="" /></a>
+                        <a href="product-details.html"><img class="animated" src="/front/assets/img/banner/banner-6.png" alt="" /></a>
                         <div class="banner-content-2 banner-position-5">
                             <h4>زنانه</h4>
                         </div>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="single-banner mb-30 scroll-zoom">
-                        <a href="product-details.html"><img class="animated" src="assets/img/banner/banner-7.png" alt="" /></a>
+                        <a href="product-details.html"><img class="animated" src="/front/assets/img/banner/banner-7.png" alt="" /></a>
                         <div class="banner-content-2 banner-position-5">
                             <h4>جین</h4>
                         </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="single-banner mb-30 scroll-zoom">
-                        <a href="product-details.html"><img class="animated" src="assets/img/banner/banner-8.png" alt="" /></a>
+                        <a href="product-details.html"><img class="animated" src="/front/assets/img/banner/banner-8.png" alt="" /></a>
                         <div class="banner-content-2 banner-position-5">
                             <h4>مردانه</h4>
                         </div>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="single-banner mb-30 scroll-zoom">
-                        <a href="product-details.html"><img class="animated" src="assets/img/banner/banner-9.png" alt="" /></a>
+                        <a href="product-details.html"><img class="animated" src="/front/assets/img/banner/banner-9.png" alt="" /></a>
                         <div class="banner-content banner-position-6 text-right">
                             <h3>لورم ایپسوم</h3>
                             <h2>لورم ایپسوم <br />متن</h2>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="single-banner mb-30 text-center scroll-zoom">
-                        <a href="product-details.html"><img class="animated" src="assets/img/banner/banner-10.png" alt="" /></a>
+                        <a href="product-details.html"><img class="animated" src="/front/assets/img/banner/banner-10.png" alt="" /></a>
                         <div class="banner-content-3 banner-position-7">
                             <h2>لورم ایپسوم متن ساختگی</h2>
                             <a href="product-details.html">فروشگاه</a>
@@ -1582,8 +1582,8 @@
                             <p>24x7 لورم ایپسوم</p>
                         </div>
                     </div>
-{{--                </div>;--}}
-                <div class=uygfvcvccol-xl-4 col-lg-4 col-md-4">
+                </div>;
+                <div class="col-xl-4 col-lg-4 col-md-4">
                     <div class="single-feature text-right mb-40">
                         <div class="feature-icon">
                             <img src="/front/assets/img/icon-img/security.png" alt="" />
