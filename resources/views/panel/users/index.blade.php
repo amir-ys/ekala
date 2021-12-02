@@ -61,7 +61,7 @@
 {{--                                    </td>--}}
                                     <td>
                                         <a class="btn btn-sm bg-transparent d-inline"
-                                           href="{{ route('panel.users.edit' , $user->id) }}"><i
+                                          onclick="deleteItem(event , '{{ route('panel.users.destroy' , $user->id) }}')"><i
                                                 class="fas fa-pen fa-15m text-success"></i></a>
 
                                         <a  class="btn btn-sm bg-transparent d-inline delete-confirm"
