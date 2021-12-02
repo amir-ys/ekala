@@ -23,6 +23,14 @@ class User extends Authenticatable
         'password',
     ];
 
+    const STATUS_ACTIVE = 1;
+    const STATUS_DEACTIVE = 0;
+
+    public static $statuses = [
+        'فعال' => self::STATUS_ACTIVE ,
+        'غیر فعال' => self::STATUS_DEACTIVE ,
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -41,4 +49,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function StatusName($status = null)
+    {
+        if (is_null($status)) $status = $this->status ;
+        if ($status == self::STATUS_ACTIVE) return 'فعال';
+        if ($status == self::STATUS_DEACTIVE) return  'غیر فعال';
+    }
+    public function getStatusCssClassAttribute()
+    {
+        if ($this->status == self::STATUS_ACTIVE) return 'success';
+        if ($this->status == self::STATUS_DEACTIVE) return  'danger';
+    }
 }

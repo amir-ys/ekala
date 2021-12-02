@@ -22,48 +22,44 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('panel.attributes.index') }}" class="waves-effect">
-                        <i class="bx bxs-cog"></i>
-                        <span key="t-attribute">ویژگی ها </span>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-layout"></i>
+                        <span key="t-layouts"> کاربران و سطوح دسترسی </span>
                     </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li>
+                            <a href="{{ route('panel.users.index') }}"
+                               key="t-vertical"> کاربران </a>
+                        </li>
+
+                        <li>
+                            <a href=""
+                               key="t-vertical"> مجوز ها (permissions)</a>
+                        </li>
+
+                        <li>
+                            <a href=""
+                               key="t-vertical"> نقش های کاربری </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li>
-                    <a href="{{ route('panel.categories.index') }}" class="waves-effect">
-                        <i class="bx bxs-cog"></i>
-                        <span key="t-categories">دسته بندی ها </span>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-layout"></i>
+                        <span key="t-layouts"> محصولات </span>
                     </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li>
+                            <a href="{{ route('panel.attributes.index') }}"
+                               key="t-vertical"> ویژگی های محصول </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('panel.categories.index') }}"
+                               key="t-vertical"> دسته بندی های محصول </a>
+                        </li>
+                    </ul>
                 </li>
-{{--                <li>--}}
-{{--                    <a href="javascript: void(0);" class="has-arrow waves-effect">--}}
-{{--                        <i class="bx bx-layout"></i>--}}
-{{--                        <span key="t-layouts"> Brands </span>--}}
-{{--                    </a>--}}
-{{--                    <ul class="sub-menu" aria-expanded="true">--}}
-{{--                        <li>--}}
-{{--                            <a href="javascript: void(0);" class="has-arrow"--}}
-{{--                               key="t-vertical">@lang('translation.Vertical')</a>--}}
-{{--                            <ul class="sub-menu" aria-expanded="true">--}}
-{{--                                <li><a href="layouts-light-sidebar"--}}
-{{--                                       key="t-light-sidebar">@lang('translation.Light_Sidebar')</a></li>--}}
-{{--                                <li><a href="layouts-compact-sidebar"--}}
-{{--                                       key="t-compact-sidebar">@lang('translation.Compact_Sidebar')</a></li>--}}
-{{--                                <li><a href="layouts-icon-sidebar"--}}
-{{--                                       key="t-icon-sidebar">@lang('translation.Icon_Sidebar')</a></li>--}}
-{{--                                <li><a href="layouts-boxed" key="t-boxed-width">@lang('translation.Boxed_Width')</a>--}}
-{{--                                </li>--}}
-{{--                                <li><a href="layouts-preloader" key="t-preloader">@lang('translation.Preloader')</a>--}}
-{{--                                </li>--}}
-{{--                                <li><a href="layouts-colored-sidebar"--}}
-{{--                                       key="t-colored-sidebar">@lang('translation.Colored_Sidebar')</a></li>--}}
-{{--                                <li><a href="layouts-scrollable" key="t-scrollable">@lang('translation.Scrollable')</a>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
-{{--                        </li>--}}
-
-{{--                    </ul>--}}
-{{--                </li>--}}
-
             </ul>
         </div>
         <!-- Sidebar -->
