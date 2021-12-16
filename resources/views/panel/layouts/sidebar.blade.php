@@ -33,7 +33,7 @@
                         </li>
 
                         <li>
-                            <a href=""
+                            <a href="{{ route('panel.permissions.index') }}"
                                key="t-vertical"> مجوز ها (permissions)</a>
                         </li>
 
