@@ -19,7 +19,7 @@ class PermissionController extends Controller
                    href="'.route('panel.permissions.edit',$user->id). '"><i class="fas fa-pen fa-15m text-success"></i></a>
                   <a onclick="deleteItem(event ,   '.  "'" .route('panel.permissions.destroy' , $user->id). "'"  .'   )" class="btn btn-sm bg-transparent d-inline delete-confirm"><i
                    class="fas fa-trash fa-15m text-danger"></i></a>' ;
-                })->rawColumns([ 'email_verified_at' , 'status' , 'action'])
+                })->rawColumns(['action'])
                 ->make(true);
         }
         return view('panel.permissions.index');

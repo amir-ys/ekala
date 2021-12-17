@@ -38,7 +38,7 @@
                         </li>
 
                         <li>
-                            <a href=""
+                            <a href="{{ route('panel.roles.index') }}"
                                key="t-vertical"> نقش های کاربری </a>
                         </li>
                     </ul>
