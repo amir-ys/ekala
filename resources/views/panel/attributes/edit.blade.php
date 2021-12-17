@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="col-xl-12">
-                <div class="card overflow-hidden">
+                <div class="card overflow-hidden border border-5">
                     <div class="card-header">
                         <div class="alert alert-primary" role="alert">
                             ویرایش ویژگی
@@ -40,12 +40,14 @@
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
                                     بروزرسانی
                                 </button>
+                                <a href="{{ route('panel.attributes.index') }}" class="btn btn-secondary waves-effect">
+                                    بازگشت
+                                </a>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- end row -->

@@ -1,5 +1,5 @@
 @extends('panel.layouts.master')
-@section('title') ویرایش دسته بندی  @endsection
+@section('title') نمایش دسته بندی  @endsection
 @section('css')
     <link href="{{ URL::asset('/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
@@ -14,7 +14,7 @@
     @endcomponent
     <div class="row">
         <div class="col-lg-11">
-            <div class="card">
+            <div class="card border border-5">
                 <div class="card-body">
                     <div class="row mb-3">
                             <div class="form-group">
@@ -28,8 +28,8 @@
                                         <input type="text" disabled class="form-control" value="{{  $category->slug }}">
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label>والد</label>
-                                        <input type="text" disabled class="form-control" value="{{ !$category->parent ? 'بدون والد ' :  $category->parent->name  }}">
+                                        <label>انتخاب دسته پدر</label>
+                                        <input type="text" disabled class="form-control" value="{{ !$category->parent ? 'ندارد' :  $category->parent->name  }}">
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label>وضعیت</label>

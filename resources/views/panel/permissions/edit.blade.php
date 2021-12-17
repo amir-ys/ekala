@@ -7,7 +7,7 @@
     @endcomponent
     <div class="row">
         <div class="col-lg-8">
-            <div class="card">
+            <div class="card border border-5">
                 <div class="card-body">
                     <div class="row mb-3">
                         <form method="POST" action="{{ route('panel.permissions.update' , $permission->id) }}">
@@ -37,9 +37,11 @@
                                             ذخیره
                                         </button>
                                         <a href="{{ route('panel.permissions.index') }}" class="btn btn-secondary waves-effect">
-                                            لغو
+                                            بازگشت
                                         </a>
                                     </div>
+                                </div>
+                            </div>
                         </form>
 
 

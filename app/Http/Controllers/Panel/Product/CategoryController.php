@@ -24,7 +24,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        $parentCategories = Category::where('parent_id' , null)->get();
+        $parentCategories = Category::all();
         $attributes = Attribute::all();
         return view('panel.categories.create' , compact('parentCategories', 'attributes'));
     }
@@ -51,7 +51,10 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        $parentCategories = Category::where('parent_id' , null)->get();
+        $categoryId = $category->id;
+        $parentCategories = Category::all()->filter(function ($category) use($categoryId){
+            return $category->id != $categoryId ;
+    });
         $attributes = Attribute::all();
         return view('panel.categories.edit' , compact('category'  ,'attributes' , 'parentCategories'));
     }

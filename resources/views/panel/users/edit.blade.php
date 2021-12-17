@@ -2,12 +2,12 @@
 @section('title') ویرایش کاربر  @endsection
 @section('content')
     @component('panel.components.breadcrumb')
-        @slot('title') ویرایش دسته بندی @endslot
+        @slot('title') ویرایش کاربر  @endslot
         @slot('li_1')  داشبرد @endslot
     @endcomponent
     <div class="row">
         <div class="col-lg-11">
-            <div class="card">
+            <div class="card border border-5">
                 <div class="card-body">
                     <div class="row mb-3">
                         <form method="POST" action="{{ route('panel.users.update' , $user->id) }}">
@@ -49,9 +49,11 @@
                                             ذخیره
                                         </button>
                                         <a href="{{ route('panel.users.index') }}" class="btn btn-secondary waves-effect">
-                                            لغو
+                                            بازگشت
                                         </a>
                                     </div>
+                                </div>
+                            </div>
                         </form>
 
 

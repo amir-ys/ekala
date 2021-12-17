@@ -55,7 +55,7 @@
                                     </button>
                                     <a href="{{ route('panel.roles.index') }}"
                                        class="btn btn-secondary waves-effect">
-                                        لغو
+                                        بازگشت
                                     </a>
                                 </div>
                             </div>

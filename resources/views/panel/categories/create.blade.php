@@ -65,7 +65,7 @@
     @endcomponent
     <div class="row">
         <div class="col-lg-11">
-            <div class="card">
+            <div class="card border border-5">
                 <div class="card-body">
                     <div class="row mb-3">
                         <form method="POST" action="{{ route('panel.categories.store') }}">
@@ -89,7 +89,7 @@
                                     <div class="col-md-3 mb-3">
                                         <label>والد</label>
                                         <select class="form-control" name="parent_id">
-                                            <option value>  بدون والد</option>
+                                            <option value>  انتخاب دسته پدر </option>
                                             @foreach($parentCategories as $category)
                                                 <option value="{{ $category->id }}"
                                                         @if($category->id == old('parent_id')) selected @endif>
@@ -157,12 +157,10 @@
                                     ذخیره
                                 </button>
                                 <a href="{{ route('panel.categories.index') }}" class="btn btn-secondary waves-effect">
-                                    لغو
+                                    بازگشت
                                 </a>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
             </div>

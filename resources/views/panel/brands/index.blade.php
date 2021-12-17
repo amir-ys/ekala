@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body border border-5">
                     <div class="row mb-3">
 {{--                        <div class="col-lg-12">--}}
 {{--                            <div class="row">--}}
@@ -56,9 +56,10 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php $i = 1 @endphp
                             @foreach($brands as $brand)
                                 <tr>
-                                    <td>{{ $brand->id }}</td>
+                                    <td>{{ $i++ }}</td>
                                     <td>{{ $brand->name }}</td>
                                     <td>{{ $brand->slug }}</td>
                                     <td>{{ $brand->created_at }}</td>
@@ -67,8 +68,6 @@
                                             class="badge py-1 bg-{{ $brand->statusCssClass }}">{{ $brand->statusName() }}</span>
                                     </td>
                                     <td>
-                                        {{--                                       <a href="" class="btn btn-sm bg-transparent d-inline "><i--}}
-                                        {{--                                                class="fas fa-eye fa-15m text-primary"></i></a>--}}
                                         <a class="btn btn-sm bg-transparent d-inline"
                                            href="{{ route('panel.brands.edit' , $brand) }}"><i
                                                 class="fas fa-pen fa-15m text-success"></i></a>

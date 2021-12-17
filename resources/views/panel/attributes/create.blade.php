@@ -1,6 +1,6 @@
 <div class="col-lg-4">
     <div class="col-xl-12">
-        <div class="card overflow-hidden">
+        <div class="card overflow-hidden border border-5">
             <div class="card-header">
                 <div class="alert alert-primary" role="alert">
                     ساخت ویژگی جدید

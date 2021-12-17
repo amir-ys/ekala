@@ -52,11 +52,11 @@
                     <ul class="sub-menu" aria-expanded="true">
                         <li>
                             <a href="{{ route('panel.attributes.index') }}"
-                               key="t-vertical"> ویژگی های محصول </a>
+                               key="t-vertical"> ویژگی ها </a>
                         </li>
                         <li>
                             <a href="{{ route('panel.categories.index') }}"
-                               key="t-vertical"> دسته بندی های محصول </a>
+                               key="t-vertical"> دسته بندی ها </a>
                         </li>
                     </ul>
                 </li>

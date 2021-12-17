@@ -7,7 +7,7 @@
     @endcomponent
     <div class="row">
         <div class="col-lg-8">
-            <div class="card">
+            <div class="card border border-5">
                 <div class="card-body">
                     <form method="POST" action="{{ route('panel.permissions.store') }}">
                         @csrf
@@ -35,7 +35,7 @@
                                     </button>
                                     <a href="{{ route('panel.permissions.index') }}"
                                        class="btn btn-secondary waves-effect">
-                                        لغو
+                                        بازگشت
                                     </a>
                                 </div>
                             </div>

@@ -60,7 +60,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body border border-5">
                     <div class="row mb-3">
                         <div class="col-lg-12">
                             <div class="row">

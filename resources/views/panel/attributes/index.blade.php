@@ -1,5 +1,5 @@
 @extends('panel.layouts.master')
-@section('title') یرندها  @endsection
+@section('title') ویژگی ها  @endsection
 @section('content')
     @component('panel.components.breadcrumb')
         @slot('title') ویژگی ها  @endslot
@@ -7,7 +7,7 @@
     @endcomponent
     <div class="row">
         <div class="col-lg-8">
-            <div class="card">
+            <div class="card border border-5">
                 <div class="card-body">
                     <div class="row mb-3">
                     </div>
@@ -22,9 +22,10 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php $i = 1 @endphp
                             @foreach($attributes as $attribute)
                                 <tr>
-                                    <td>{{ $attribute->id }}</td>
+                                    <td>{{ $i++ }}</td>
                                     <td>{{ $attribute->name }}</td>
                                     <td>{{ $attribute->created_at }}</td>
                                     <td>

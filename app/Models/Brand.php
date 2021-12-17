@@ -24,11 +24,11 @@ class Brand extends Model
     const STATUS_DEACTIVE = 0;
 
     public static $statuses = [
-         self::STATUS_ACTIVE ,
-          self::STATUS_DEACTIVE ,
+        'فعال'  =>  self::STATUS_ACTIVE ,
+        'غیر فعال' =>  self::STATUS_DEACTIVE ,
     ];
 
-    public function StatusName($status = null)
+    public function statusName($status = null)
     {
         if (is_null($status)) $status = $this->status ;
         if ($status == self::STATUS_ACTIVE) return 'فعال';

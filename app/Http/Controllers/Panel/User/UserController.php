@@ -69,7 +69,8 @@ class UserController extends Controller
             'email' => $request->email ,
             'password' => bcrypt($request->getPassword()) ,
         ]);
-        $request->email_verified_at ? $user->markEmailAsVerified() : null;
+        $request->email_verified_at  ? $user->markEmailAsVerified() : $user->email_verified_at = null;
+        $user->save();
         return redirect()->route('panel.users.index');
     }
 

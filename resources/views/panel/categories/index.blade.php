@@ -7,7 +7,7 @@
     @endcomponent
     <div class="row">
         <div class="col-lg-12">
-            <div class="card">
+            <div class="card border border-5">
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-lg-12">
@@ -35,9 +35,10 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php $i = 1 @endphp
                             @foreach($categories as $category)
                                 <tr>
-                                    <td>{{ $category->id }}</td>
+                                    <td>{{ $i++ }}</td>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->parent  ? $category->parent->name : 'ندارد'  }}</td>
                                     <td>{{ $category->created_at }}</td>

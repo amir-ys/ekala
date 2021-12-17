@@ -54,7 +54,7 @@
     @endcomponent
     <div class="row">
         <div class="col-lg-11">
-            <div class="card">
+            <div class="card border border-5">
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-lg-12">

@@ -1,12 +1,12 @@
 <div class="col-lg-4">
     <div class="col-xl-12">
         <div class="card overflow-hidden">
-            <div class="card-header">
+            <div class="card-header border border-5">
                 <div class="alert alert-primary" role="alert">
                     ساخت برند جدید
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body border border-5">
                 <form method="POST" action="{{ route('panel.brands.store') }}">
                     @csrf
                     <div class="form-group">
@@ -32,9 +32,9 @@
                                     <div class="col-sm-9">
                                         <select class="form-control" name="status" aria-hidden="true">
                                             <option value> وضعیت برند</option>
-                                            @foreach(\App\Models\Brand::$statuses as $status)
+                                            @foreach(\App\Models\Brand::$statuses as $statusName => $status)
                                                 <option
-                                                    value="{{ $status }}">  {{ \App\Models\Brand::statusName($status) }}  </option>
+                                                    value="{{ $status }}">  {{ $statusName }}  </option>
                                             @endforeach
                                         </select>
                                         @error('status')

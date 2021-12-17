@@ -64,7 +64,7 @@
     @endcomponent
     <div class="row">
         <div class="col-lg-11">
-            <div class="card">
+            <div class="card border border-5">
                 <div class="card-body">
                     <div class="row mb-3">
                         <form method="POST" action="{{ route('panel.categories.update' , $category->id) }}">
@@ -87,12 +87,12 @@
                                         <x-validation-error field="slug"/>
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label>والد</label>
+                                        <label>انتخاب دسته پدر</label>
                                         <select class="form-control" name="parent_id">
-                                            <option value> بدون والد</option>
+                                            <option value> ندارد </option>
                                             @foreach($parentCategories as $parentCategory)
                                                 <option value="{{ $parentCategory->id }}"
-                                                        @if($parentCategory->id == $category->parent_id) selected @endif >
+                                                    @if($parentCategory->id == $category->parent_id) selected @endif >
                                                     {{ $parentCategory->name }} </option>
                                             @endforeach
                                         </select>
@@ -165,7 +165,7 @@
                                     ذخیره
                                 </button>
                                 <a href="{{ route('panel.categories.index') }}" class="btn btn-secondary waves-effect">
-                                    لغو
+                                    بازگشت
                                 </a>
                             </div>
                         </form>
