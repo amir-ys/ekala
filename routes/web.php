@@ -21,7 +21,11 @@ Route::get('/panel/dashboard', function () {
 //});
 
 //Panel
-Route::group(['prefix' => 'panel' , 'as' => 'panel.'] , function (){
+Route::group(
+    ['prefix' => 'panel' ,
+        'as' => 'panel.'
+        ,'middleware' => 'auth' ,
+    ]  , function (){
     Route::resource('brands' , BrandController::class );
     Route::resource('attributes' , AttributeController::class );
     Route::resource('categories' , CategoryController::class );
