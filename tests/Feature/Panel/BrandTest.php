@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Brand;
+namespace Tests\Feature\Panel;
 
 use App\Models\Brand;
 use App\Models\User;
