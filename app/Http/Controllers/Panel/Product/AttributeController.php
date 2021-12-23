@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Panel\Product;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Panel\Attribute\AttributeRequest;
+use App\Http\Requests\Panel\Product\AttributeRequest;
 use App\Models\Attribute;
-use Illuminate\Http\Request;
 
 class AttributeController extends Controller
 {

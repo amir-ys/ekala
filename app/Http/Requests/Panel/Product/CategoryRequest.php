@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Panel\Category;
+namespace App\Http\Requests\Panel\Product;
 
 use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use phpDocumentor\Reflection\Type;
+use function request;
 
 class CategoryRequest extends FormRequest
 {

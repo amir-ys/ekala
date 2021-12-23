@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Panel\Attribute;
+namespace App\Http\Requests\Panel\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class AttributeRequest extends FormRequest
+class TagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +25,7 @@ class AttributeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required' , 'min:2']
+            'name' => ['required' , Rule::unique('tags' ,'name')]
         ];
     }
 }

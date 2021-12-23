@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Panel\Product;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Panel\Category\CategoryRequest;
+use App\Http\Requests\Panel\Product\CategoryRequest;
 use App\Models\Attribute;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
