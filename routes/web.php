@@ -5,6 +5,7 @@ use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Panel\Brand\BrandController;
 use App\Http\Controllers\Panel\Product\AttributeController;
 use App\Http\Controllers\Panel\Product\CategoryController;
+use App\Http\Controllers\Panel\Product\ProductController;
 use App\Http\Controllers\Panel\Product\TagController;
 use App\Http\Controllers\Panel\RolePermission\PermissionController;
 use App\Http\Controllers\Panel\RolePermission\RoleController;
@@ -34,6 +35,7 @@ Route::group(
     Route::resource('permissions' , PermissionController::class );
     Route::resource('roles' , RoleController::class );
     Route::resource('tags' , TagController::class );
+    Route::resource('products' , ProductController::class );
 });
 
 require __DIR__.'/auth.php';
