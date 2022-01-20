@@ -50,9 +50,9 @@
             placeholder: "انتخاب ویژگی قابل قبلتر"
         })
 
-        $('#attribute-variation-select').select2( {
-            placeholder: "انتخاب ویژگی متغییر"
-        })
+        // $('#attribute-variation-select').select2( {
+        //     placeholder: "انتخاب ویژگی متغییر"
+        // })
 
 
 
@@ -129,13 +129,13 @@
                                         </select>
                                         <x-validation-error field="attribute_filter_ids"/>
                                     </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label>انتخاب ویژگی های متغییر</label>
-                                        <select class="select2 form-control select2-multiple" multiple
-                                                id="attribute-variation-select" name="attribute_variation_id">
-                                        </select>
-                                        <x-validation-error field="attribute_variation_id"/>
-                                    </div>
+{{--                                    <div class="col-md-3 mb-3">--}}
+{{--                                        <label>انتخاب ویژگی های متغییر</label>--}}
+{{--                                        <select class="select2 form-control select2-multiple" multiple--}}
+{{--                                                id="attribute-variation-select" name="attribute_variation_id">--}}
+{{--                                        </select>--}}
+{{--                                        <x-validation-error field="attribute_variation_id"/>--}}
+{{--                                    </div>--}}
                                     <div class="col-md-3 mb-3">
                                         <label>آیکون </label>
                                         <input type="text" class="form-control" name="icon"

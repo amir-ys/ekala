@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Panel\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\responses\AjaxResponse;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Tag;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -12,6 +15,24 @@ class ProductController extends Controller
     {
         $brands =Brand::all();
         $categories =Category::all();
-        return view('panel.products.create' , compact('brands' , 'categories'));
+        $tags = Tag::all();
+        return view('panel.products.create' , compact('brands' , 'categories' , 'tags'));
+    }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
+
+    public function getCategoryAttribute($categoryId)
+    {
+        $category = Category::find($categoryId);
+        if (!$category){
+           return AjaxResponse::error('دسته بندی با این  ایدی پیدا نشد.');
+        }
+        $attributes = $category->attributes()->wherePivot('is_variation' , 0)->get();
+        $variation = $category->attributes()->wherePivot('is_variation' , 1)->first();
+        return  AjaxResponse::sendData(['attributes' => $attributes , 'variation' => $variation] ,
+            'ویژگی های دسته بندی با موفقیت پیدا شد .');
     }
 }

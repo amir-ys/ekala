@@ -42,7 +42,7 @@ class CategoryController extends Controller
        foreach ($request->attribute_ids as $attribute)
        $category->attributes()->attach( $attribute , [
            'is_filter' =>  in_array($attribute ,$request->attribute_filter_ids) ? 1 : 0 ,
-           'is_variation' =>   $attribute == $request->attribute_variation_id ?   1 : 0
+//           'is_variation' =>   $attribute == $request->attribute_variation_id ?   1 : 0
        ]);
        newFeedback(null , 'دسته بندی با موفقیت ایجاد شد . ');
        return redirect()->route('panel.categories.index');
@@ -73,7 +73,7 @@ class CategoryController extends Controller
         foreach ($request->attribute_ids as $attribute)
             $category->attributes()->attach( $attribute , [
                 'is_filter' =>  in_array($attribute ,$request->attribute_filter_ids) ? 1 : 0 ,
-                'is_variation' =>   $attribute == $request->attribute_variation_id ?   1 : 0
+//                'is_variation' =>   $attribute == $request->attribute_variation_id ?   1 : 0
             ]);
         newFeedback(null , 'دسته بندی با موفقیت یروزرسانی شد . ');
         return redirect()->route('panel.categories.index');

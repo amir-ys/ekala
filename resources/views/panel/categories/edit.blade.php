@@ -133,16 +133,16 @@
                                         </select>
                                         <x-validation-error field="attribute_filter_ids"/>
                                     </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label>انتخاب ویژگی های متغیر</label>
-                                        <select class="select2 form-control select2-multiple" multiple
-                                                id="attribute-variation-select" name="attribute_variation_id">
-                                            @foreach($category->attributes()->wherePivot('is_variation' , 1)->get() as $variationAttribute)
-                                                <option value="{{ $variationAttribute->id }}" selected> {{ $variationAttribute->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <x-validation-error field="attribute_variation_id"/>
-                                    </div>
+{{--                                    <div class="col-md-3 mb-3">--}}
+{{--                                        <label>انتخاب ویژگی های متغیر</label>--}}
+{{--                                        <select class="select2 form-control select2-multiple" multiple--}}
+{{--                                                id="attribute-variation-select" name="attribute_variation_id">--}}
+{{--                                            @foreach($category->attributes()->wherePivot('is_variation' , 1)->get() as $variationAttribute)--}}
+{{--                                                <option value="{{ $variationAttribute->id }}" selected> {{ $variationAttribute->name }}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                        <x-validation-error field="attribute_variation_id"/>--}}
+{{--                                    </div>--}}
                                     <div class="col-md-3 mb-3">
                                         <label>آیکون </label>
                                         <input type="text" class="form-control" name="icon"

@@ -24,9 +24,9 @@ Route::get('/panel/dashboard', function () {
 
 //Panel
 Route::group(
-    ['prefix' => 'panel' ,
-        'as' => 'panel.'
-        ,'middleware' => 'auth' ,
+    [   'prefix' => 'panel' ,
+        'as' => 'panel.' ,
+        'middleware' => 'auth' ,
     ]  , function (){
     Route::resource('brands' , BrandController::class );
     Route::resource('attributes' , AttributeController::class );
@@ -36,6 +36,7 @@ Route::group(
     Route::resource('roles' , RoleController::class );
     Route::resource('tags' , TagController::class );
     Route::resource('products' , ProductController::class );
+    Route::get('products/get-category-attribute/{id}' , [ProductController::class , 'getCategoryAttribute'] )->name('products.getCategoryAttribute');
 });
 
 require __DIR__.'/auth.php';

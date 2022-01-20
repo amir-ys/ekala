@@ -57,15 +57,15 @@
                                     <input type="text" disabled class="form-control"
                                            value="{{ $filterAttribute  }}">
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label>انتخاب ویژگی های متغیر</label>
-                                    @php $variationAttribute = null @endphp
-                                    @foreach($category->attributes()->wherePivot('is_filter' , 1)->get() as $attribute)
-                                        @php $variationAttribute .= $attribute->name .  ' , '   @endphp
-                                    @endforeach
-                                    <input type="text" disabled class="form-control"
-                                           value="{{ $variationAttribute  }}">
-                                </div>
+{{--                                <div class="col-md-3 mb-3">--}}
+{{--                                    <label>انتخاب ویژگی های متغیر</label>--}}
+{{--                                    @php $variationAttribute = null @endphp--}}
+{{--                                    @foreach($category->attributes()->wherePivot('is_filter' , 1)->get() as $attribute)--}}
+{{--                                        @php $variationAttribute .= $attribute->name .  ' , '   @endphp--}}
+{{--                                    @endforeach--}}
+{{--                                    <input type="text" disabled class="form-control"--}}
+{{--                                           value="{{ $variationAttribute  }}">--}}
+{{--                                </div>--}}
                                 <div class="col-md-3 mb-3">
                                     <label>آیکون </label>
                                     <input type="text" disabled class="form-control"

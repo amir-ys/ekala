@@ -17,7 +17,7 @@ class CreateAttributeCategoriesTable extends Migration
             $table->foreignId('attribute_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->string('is_filter');
-            $table->string('is_variation');
+//            $table->string('is_variation');
             $table->primary(['attribute_id' , 'category_id']);
         });
     }
