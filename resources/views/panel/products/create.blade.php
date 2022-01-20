@@ -8,7 +8,7 @@
     <script src="{{ URL::asset('/assets/js/pages/form-advanced.init.js') }}"></script>
     <script>
 
-        $('#category_select').change(function () {
+        $('#category_id').change(function () {
             var categoryId = $(this).val() ? $(this).val() :  0 ;
             var url = '{{ route('panel.products.getCategoryAttribute' , 'id') }}'.replace('id' , categoryId)
             $.ajax({
@@ -21,7 +21,7 @@
                             var attributeFormGroup = $(`<div class="col-md-3 mb-3" ></dive>`);
                           attributeFormGroup.append(`<label> ${attribute.name} </label>`)
                           attributeFormGroup.append(`<input type="text" class="form-control"
-                                    name="attributesId[${attribute.id}]" />`)
+                                    name="attribute_Ids[${attribute.id}]" />`)
                         $('#category-row').append(attributeFormGroup);
                         })
                     }else if(response.status === -1){
@@ -81,6 +81,7 @@
                                                     {{ $brand->name }} </option>
                                             @endforeach
                                         </select>
+                                        <x-validation-error field="brand_id"/>
                                     </div>
 
                                     <div class="col-md-3 mb-3">
@@ -92,6 +93,7 @@
                                                 > {{ $brandName }} </option>
                                             @endforeach
                                         </select>
+                                        <x-validation-error field="status"/>
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label>تگ ها</label>
@@ -103,6 +105,7 @@
                                                 > {{ $tag->name }} </option>
                                             @endforeach
                                         </select>
+                                        <x-validation-error field="tag_id"/>
                                     </div>
                                 </div>
                             </div>
@@ -111,6 +114,7 @@
                                     <div class="col-md-12 mb-3">
                                         <label>توضیحات</label>
                                         <textarea class="form-control" name="description"> {{ old('description') }}</textarea>
+                                    <x-validation-error field="description"/>
                                     </div>
                                 </div>
                             </div>
@@ -121,10 +125,12 @@
                                     <div class="col-md-4 mb-3">
                                         <label>انتخاب تصویر اصلی</label>
                                         <input type="file" class="form-control" name="primary_image" />
+                                        <x-validation-error field="primary_image"/>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label>انتخاب تصاوبر دیگر</label>
                                         <input type="file" multiple class="form-control" name="images[]" />
+                                        <x-validation-error field="images"/>
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +140,7 @@
                                 <div class="row ">
                                     <div class="col-md-4 offset-4 mb-3">
                                         <label>انتخاب دسته بندی محصول</label>
-                                        <select class="form-control" id="category_select" name="category_id">
+                                        <select class="form-control" id="category_id" name="category_id">
                                             <option value>  انتخاب  دسته بندی </option>
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}"
@@ -142,6 +148,7 @@
                                                 > {{ $category->name }} </option>
                                             @endforeach
                                         </select>
+                                        <x-validation-error field="category_id"/>
                                     </div>
                                 </div>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Panel\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Panel\Product\StoreProductRequest;
 use App\Http\responses\AjaxResponse;
 use App\Models\Brand;
 use App\Models\Category;
@@ -11,6 +12,10 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function index()
+    {
+        dd('dfffff');
+    }
     public function create()
     {
         $brands =Brand::all();
@@ -19,7 +24,7 @@ class ProductController extends Controller
         return view('panel.products.create' , compact('brands' , 'categories' , 'tags'));
     }
 
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         dd($request->all());
     }

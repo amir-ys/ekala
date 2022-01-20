@@ -176,7 +176,12 @@ return [
         "fullname" => "نام کامل" ,
         "status" => "وضعیت" ,
         "slug" => "نام انگلیسی" ,
-        "fa_name" =>  "نام فارسی"
+        "fa_name" =>  "نام فارسی" ,
+        "price" =>  "قیمت"  ,
+        "quantity" =>  "تعداد"  ,
+        "images" =>  "تصاویر"  ,
+        "delivery_amount" =>  "هزینه ارسال"  ,
+        "delivery_amount_per_product" =>  " هزینه ارسال برای این محصول"  ,
 
     ],
 ];
