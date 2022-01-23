@@ -15,7 +15,7 @@ class CreateMediaTable extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->json('files');
+            $table->string('files');
             $table->string('type');
             $table->foreignId('user_id');
             $table->foreignId('product_id')->constrained('products');

@@ -50,7 +50,9 @@ class MediaFileService
 
     private static function getFileType(UploadedFile $file)
     {
-        return $file->getClientOriginalExtension();
+         if (in_array($file->getClientOriginalExtension() , ['jpg' , 'jpeg' , 'png' ])); return 'image' ;
+         if (in_array($file->getClientOriginalExtension() , ['zip' , 'rar' , '' ])); return 'zip' ;
+         if (in_array($file->getClientOriginalExtension() , ['mp4' , 'wma' , 'png' ])); return 'video' ;
     }
 
     private static function getClientFileName(UploadedFile $file)

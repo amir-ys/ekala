@@ -7,11 +7,16 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageFileService
 {
-    public function upload(UploadedFile $file , $filename , $dir , $subDirectory)
+    public static function upload(UploadedFile $file , $filename , $dir , $subDirectory = null)
     {
-        $path = $dir . DIRECTORY_SEPARATOR . $subDirectory;
-        Storage::putFileAs($path ,$file ,$file);
-        return $path .  $filename;
+        if(is_null($subDirectory)) {
+            $path = $dir ;
+        }else{
+            $path = $dir . DIRECTORY_SEPARATOR . $subDirectory;
+        }
+        $filename = $filename . '.' . $file->getClientOriginalExtension();
+        Storage::putFileAs($path , $file ,$filename);
+        return $path . DIRECTORY_SEPARATOR .  $filename;
     }
 
 }

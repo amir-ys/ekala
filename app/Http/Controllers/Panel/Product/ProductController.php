@@ -29,7 +29,27 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
-
+        DB::transaction(function () use ($request) {
+            $product =  Product::create([
+                'name' => $request->name,
+                'brand_id' => $request->brand_id,
+                'category_id' => $request->category_id,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'description' => $request->description,
+                'status' => $request->status,
+                'delivery_amount' => $request->delivery_amount,
+                'delivery_amount_per_product' => $request->delivery_amount_per_product,
+            ]);
+            if ($request->hasFile('images') || $request->hasFile('primary_image')){
+                MediaFileService::publicUpload($request->primary_image , $product->id , 'products' , true );
+                $images = $request->images;
+                foreach ($images as $image){
+                    MediaFileService::publicUpload($image , $product->id , 'products' , false );
+                }
+            }
+        });
+        return back();
     }
 
     public function getCategoryAttribute($categoryId)
