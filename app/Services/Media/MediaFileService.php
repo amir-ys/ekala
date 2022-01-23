@@ -9,24 +9,27 @@ class MediaFileService
 {
     private static $dir;
     private static $file;
+    private static $subDirectory;
     private static $isPrimary;
     private static $productId;
-    public static function privateUpload(UploadedFile $file , $productId ,  $primary = false )
+    public static function privateUpload(UploadedFile $file , $productId , $subDirectory ,  $primary = false )
     {
         static::$dir = 'private';
         static::$productId = $productId;
         static::$isPrimary = $primary;
         static::$file = $file;
+        static::$subDirectory = $subDirectory;
         static::upload();
 
     }
 
-    public static function publicUpload(UploadedFile $file , $productId ,  $primary = false )
+    public static function publicUpload(UploadedFile $file , $productId , $subDirectory ,  $primary = false )
     {
         static::$dir = 'public';
         static::$productId = $productId;
         static::$isPrimary = $primary;
         static::$file = $file;
+        static::$subDirectory = $subDirectory;
         static::upload();
     }
 
@@ -35,7 +38,7 @@ class MediaFileService
     {
         $fileName = static::filenameGenerator();
         $media = new Media();
-        $media->files = ImageFileService::upload(static::$file , $fileName , static::$dir);
+        $media->files = ImageFileService::upload(static::$file , $fileName , static::$dir , static::$subDirectory);
         $media->type = static::getFileType(static::$file);
         $media->user_id = auth()->id();
         $media->product_id = static::$productId;

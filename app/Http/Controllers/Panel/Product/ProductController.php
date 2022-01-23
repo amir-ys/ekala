@@ -7,8 +7,11 @@ use App\Http\Requests\Panel\Product\StoreProductRequest;
 use App\Http\responses\AjaxResponse;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Tag;
+use App\Services\Media\MediaFileService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -26,7 +29,7 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
-        dd($request->all());
+
     }
 
     public function getCategoryAttribute($categoryId)
