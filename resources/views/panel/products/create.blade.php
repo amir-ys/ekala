@@ -21,7 +21,7 @@
                             var attributeFormGroup = $(`<div class="col-md-3 mb-3" ></dive>`);
                           attributeFormGroup.append(`<label> ${attribute.name} </label>`)
                           attributeFormGroup.append(`<input type="text" class="form-control"
-                                    name="attribute_Ids[${attribute.id}]" />`)
+                                    name="attribute_ids[${attribute.id}]" />`)
                         $('#category-row').append(attributeFormGroup);
                         })
                     }else if(response.status === -1){

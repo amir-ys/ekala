@@ -29,6 +29,7 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
+//        dd($request->all());
         DB::transaction(function () use ($request) {
             $product =  Product::create([
                 'name' => $request->name,
@@ -41,13 +42,18 @@ class ProductController extends Controller
                 'delivery_amount' => $request->delivery_amount,
                 'delivery_amount_per_product' => $request->delivery_amount_per_product,
             ]);
-            if ($request->hasFile('images') || $request->hasFile('primary_image')){
+            if ($request->hasFile('primary_image')){
                 MediaFileService::publicUpload($request->primary_image , $product->id , 'products' , true );
+            }
+            if ($request->hasFile('images') ){
                 $images = $request->images;
                 foreach ($images as $image){
                     MediaFileService::publicUpload($image , $product->id , 'products' , false );
                 }
             }
+            $attributes = $request->attribute_ids ;
+            foreach ($attributes as $attribute => $value)
+            $product->attributes()->attach($attribute , [ 'value' => $value]);
         });
         return back();
     }
