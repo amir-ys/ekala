@@ -33,4 +33,10 @@ class Product extends Model
         return $this->belongsToMany(Attribute::class , 'attribute_product'
             , 'product_id' , 'attribute_id');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class , 'tag_product'
+            , 'product_id' , 'tag_id');
+    }
 }

@@ -97,7 +97,7 @@
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label>تگ ها</label>
-                                        <select class="form-control" name="tag_id">
+                                        <select class="form-control select2" multiple name="tag_id[]">
                                             <option value>  انتخاب  تگ </option>
                                             @foreach($tags as $tag)
                                                 <option value="{{ $tag->id }}"

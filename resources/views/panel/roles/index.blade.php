@@ -8,8 +8,6 @@
     <script src="{{ URL::asset('/assets/libs/datatables/datatables.min.js') }}"></script>
     <script>
         $(function () {
-            fillDataTable();
-            function fillDataTable() {
                 $('#tbl_roles').DataTable({
                     "language": {
                         "paginate": {
@@ -44,9 +42,7 @@
                             searchable: true
                         }]
                 });
-            }
         })
-
     </script>
 @endsection
 @section('content')

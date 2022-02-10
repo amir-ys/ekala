@@ -29,7 +29,6 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
-//        dd($request->all());
         DB::transaction(function () use ($request) {
             $product =  Product::create([
                 'name' => $request->name,
@@ -42,6 +41,11 @@ class ProductController extends Controller
                 'delivery_amount' => $request->delivery_amount,
                 'delivery_amount_per_product' => $request->delivery_amount_per_product,
             ]);
+            $tag_ids = $request->tag_ids;
+            foreach ($tag_ids as $tag_id){
+            $product->tags()->attach($tag_id);
+            }
+
             if ($request->hasFile('primary_image')){
                 MediaFileService::publicUpload($request->primary_image , $product->id , 'products' , true );
             }
