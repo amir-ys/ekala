@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/panel/dashboard', function () {
     return view('panel.dashboard');
-})->name('panel.dashboard');
+})->name('panel.dashboard')->middleware('auth');
 
 // Front
 //Route::group([],  function (){

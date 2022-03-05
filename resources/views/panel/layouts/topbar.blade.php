@@ -86,6 +86,12 @@
             </button>
         </div>
 
+        <a class="btn" href="" onclick="logoutUser(event , '{{ auth()->id() }}')"> logout </a>
+
+        <form action="{{ route('logout') }}" method="post" id="logout-user-{{ auth()->id() }}">
+            @csrf
+        </form>
+
     </div>
 </div>
 </header>
@@ -137,3 +143,12 @@
 {{--        </div><!-- /.modal-content -->--}}
 {{--    </div><!-- /.modal-dialog -->--}}
 {{--</div><!-- /.modal -->--}}
+@section('script')
+    <script>
+        function logoutUser(event){
+            event.preventDefault();
+            document.getElementById('logout-user-' + userId).submit()
+        }
+
+    </script>
+@endsection

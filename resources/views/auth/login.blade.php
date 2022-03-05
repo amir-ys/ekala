@@ -1,86 +1,47 @@
 @extends('front.layouts.master')
 @section('content')
-    <div class="login-register-area pt-100 pb-100" style="direction: rtl;">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 col-md-12 ml-auto mr-auto">
-                    <div class="login-register-wrapper">
-                        <div class="login-register-tab-list nav">
-                            <a class="active" data-toggle="tab" href="#lg1">
-                                <h4> ورود </h4>
-                            </a>
-                            <a data-toggle="tab" href="#lg2">
-                                <h4> عضویت </h4>
-                            </a>
+    <div STYLE="height: 100px" ></div>
+        <div class="block">
+            <div class="container">
+                <ul class="breadcrumbs">
+                    <li><a href="index-rtl.html"><i class="icon icon-home"></i></a></li>
+                    <li>/<span>صفحه ورود</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="block">
+            <div class="container">
+                <div class="row row-eq-height">
+                    <div class="col-sm-6">
+                        <div class="form-card">
+                            <h4> مشتریان جدید </h4>
+                            <p> با ایجاد یک حساب کاربری در فروشگاه ما ، شما می توانید از طریق پرداخت خارج شوید
+                                سریعتر پردازش کنید ، چندین آدرس حمل و نقل را ذخیره کنید ، سفارشات خود را مشاهده و پیگیری کنید
+                                حساب شما و موارد دیگر. </p>
+                            <div> <a href="account-create.html" class="btn btn-lg"> <i
+                                        class = "icon icon-user"> </i> <span> <a href="{{ route('register') }}">ایجاد یک حساب کاربری</a> </span> </a> </div>
                         </div>
-                        <div class="tab-content">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-card">
+                            <h2> مشتریان ثبت شده </h2>
+                            <p> اگر با ما حساب کاربری دارید ، لطفاً وارد شوید. </p>
+                            <form class="account-create" method="post" action="{{ route('login') }}">
+                                @csrf
+                                <label> پست الکترونیکی <span class = "required"> * </span> </label>
+                                <input name="email" type = "text" class = "form-control input-lg">
+                                <label> گذرواژه <span class = "required"> * </span> </label>
+                                <input name="password" type = "password" class = "form-control input-lg">
+                                <x-validation-error field="email"/>
+                                <x-validation-error field="password"/>
+                                <div>
+                                    <button class = "btn btn-lg"> ورود </button>
 
-                            <div id="lg1" class="tab-pane active">
-                                <div class="login-form-container">
-                                    <div class="login-register-form">
-                                        <form action="{{ route('login') }}" method="post">
-                                            @csrf
-                                            <div>
-                                                <input name="email" class="@error('email') mb-1 @enderror" placeholder="ایمیل"
-                                                       type="email" value="{{ old('email') }}">
-
-                                            </div>
-
-                                            <div>
-                                                <input type="password" class="@error('email') mb-1 @enderror" name="password" placeholder="رمز عبور">
-                                                @error('password')
-                                                <div class="input-error-validation ">
-                                                    <strong> {{ $message }} </strong>
-                                                </div>
-                                                @enderror
-                                                @error('email')
-                                                <div class="input-error-validation ">
-                                                    <strong> {{ $message }} </strong>
-                                                </div>
-                                                @enderror
-                                            </div>
-                                            <div class="button-box">
-                                                <div class="login-toggle-btn d-flex justify-content-between">
-                                                    <div>
-                                                        <input name="remember" type="checkbox" @if(old('remember')) checked @endif>
-                                                        <label> مرا بخاطر بسپار </label>
-                                                    </div>
-                                                    <a href="register.html"> فراموشی رمز عبور ! </a>
-                                                </div>
-                                                <button type="submit">ورود</button>
-                                                <a href="index.html" class="btn btn-google btn-block mt-4">
-                                                    <i class="sli sli-social-google"></i> ورود با حساب گوگل
-                                                </a>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="lg2" class="tab-pane">
-                                <div class="login-form-container">
-                                    <div class="login-register-form">
-                                        <form action="#" method="post">
-                                            <input name="name" placeholder="نام" type="email">
-                                            <input name="user-email" placeholder="ایمیل" type="email">
-                                            <input type="password" name="user-password" placeholder="رمز عبور">
-                                            <input type="text" name="user-name" placeholder="تکرار رمز عبور">
-                                            <div class="button-box">
-                                                <button type="submit">عضویت</button>
-                                                <a href="index.html" class="btn btn-google btn-block mt-4">
-                                                    <i class="sli sli-social-google"></i>
-                                                    ایجاد اکانت با گوگل
-                                                </a>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
+                                    <div class = "back"> <a href="#"> رمز ورود خود را فراموش کرده اید؟ </a></div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 @endsection

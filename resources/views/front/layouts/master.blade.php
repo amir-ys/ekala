@@ -23,7 +23,7 @@
 </div>
 <div id="wrapper">
     <!-- Page -->
-    <div class="page-wrapper">
+    <div class="container page-wrapper">
         <!-- Header -->
         @include('front.layouts.header')
         <!-- /Header -->
@@ -32,12 +32,7 @@
         <!-- /Sidebar -->
         <!-- Page Content -->
         <main class="page-main">
-            @include('front.layouts.slider')
-            @include('front.layouts.welcome-text')
-            @include('front.layouts.products')
-            @include('front.layouts.banner')
-            @include('front.layouts.blog')
-            @include('front.layouts.social-media')
+          @yield('content')
         </main>
         <!-- /Page Content -->
         <!-- Footer -->

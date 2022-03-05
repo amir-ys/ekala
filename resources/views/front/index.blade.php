@@ -1,1 +1,9 @@
 @extends('front.layouts.master')
+@section('content')
+    @include('front.layouts.slider')
+    @include('front.layouts.welcome-text')
+    @include('front.layouts.products')
+    @include('front.layouts.banner')
+    @include('front.layouts.blog')
+    @include('front.layouts.social-media')
+@endsection
