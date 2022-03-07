@@ -20,7 +20,8 @@ class CreateMediaTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('product_id')->constrained('products');
             $table->string('client_file_name')->nullable();
-            $table->foreignId('is_primary')->default(0)->nullable();
+            $table->tinyInteger('is_primary')->default(0)->nullable();
+            $table->tinyInteger('is_private')->default(0)->nullable();
             $table->timestamps();
         });
     }

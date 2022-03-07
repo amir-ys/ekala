@@ -47,9 +47,13 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-layout"></i>
-                        <span key="t-layouts"> محصولات </span>
+                        <span key="t-layouts"> محصول </span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
+                        <li>
+                            <a href="{{ route('panel.products.index') }}"
+                               key="t-vertical">  محصولات  </a>
+                        </li>
                         <li>
                             <a href="{{ route('panel.categories.index') }}"
                                key="t-vertical"> دسته بندی ها </a>

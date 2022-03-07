@@ -39,4 +39,29 @@ class Product extends Model
         return $this->belongsToMany(Tag::class , 'tag_product'
             , 'product_id' , 'tag_id');
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function status($attribute = 'cssClass')
+    {
+        if($attribute == 'name') {
+            return $this->status  == 1 ? 'فعال' : 'غیرفعال' ;
+        }
+        if ($attribute == 'cssClass') {
+            return $this->status  == 1 ? 'success' : 'danger' ;
+        }
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Media::class , 'product_id' , 'id');
+    }
 }

@@ -44,6 +44,7 @@
 
     <!-- JAVASCRIPT -->
     @include('panel.layouts.vendor-scripts')
+    @include('panel.layouts.toasts')
 </body>
 
 </html>

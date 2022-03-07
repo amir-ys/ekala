@@ -31,12 +31,11 @@ class StoreProductRequest extends FormRequest
             'quantity' => ['required' , 'numeric'] ,
             'brand_id' => ['required' , Rule::exists('brands' , 'id')] ,
             'status' => ['required' , Rule::in(Product::$statuses)] ,
-            'tag_id' => ['required' , Rule::exists('tags' , 'id')] ,
+            'tag_ids' => ['required' , Rule::exists('tags' , 'id')] ,
             'description' => ['required' , 'string'] ,
             'primary_image' => ['required' , 'mimes:jpg,jpeg,png'] ,
             'images.*' => ['required' , 'mimes:jpg,jpeg,png'] ,
             'category_id' => ['required' , Rule::exists('categories' , 'id')] ,
-            'attribute_ids.*' => ['required'] ,
             'delivery_amount' => ['required' , 'numeric'] ,
             'delivery_amount_per_product' => ['nullable' , 'numeric'] ,
         ];
@@ -49,6 +48,7 @@ class StoreProductRequest extends FormRequest
             'tag_id' => 'برند'  ,
             'category_id' => 'برند'  ,
             'primary_image' => 'تصویر اصلی'  ,
+            'images' => 'تصاوبر'  ,
         ];
     }
 }

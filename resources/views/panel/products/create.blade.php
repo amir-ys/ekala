@@ -7,31 +7,9 @@
     <script src="{{ URL::asset('/assets/libs/select2/select2.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/pages/form-advanced.init.js') }}"></script>
     <script>
-
-        $('#category_id').change(function () {
-            var categoryId = $(this).val() ? $(this).val() :  0 ;
-            var url = '{{ route('panel.products.getCategoryAttribute' , 'id') }}'.replace('id' , categoryId)
-            $.ajax({
-                url : url ,
-                type : 'get' ,
-                success :function (response) {
-                    if(response.status === 1){
-                        $('#category-row').html(null);
-                        response.data.attributes.forEach(function (attribute) {
-                            var attributeFormGroup = $(`<div class="col-md-3 mb-3" ></dive>`);
-                          attributeFormGroup.append(`<label> ${attribute.name} </label>`)
-                          attributeFormGroup.append(`<input type="text" class="form-control"
-                                    name="attribute_ids[${attribute.id}]" />`)
-                        $('#category-row').append(attributeFormGroup);
-                        })
-                    }else if(response.status === -1){
-                        $('#category-row').html(null);
-                    }
-                }
-
-            })
+        $('#tag-select2').select2({
+            placeholder: "انتخاب تگ",
         })
-
 
     </script>
 @endsection
@@ -96,17 +74,29 @@
                                         <x-validation-error field="status"/>
                                     </div>
                                     <div class="col-md-3 mb-3">
+                                        <label>دسته بندی ها</label>
+                                        <select class="form-control"  name="category_id">
+                                            <option value>  انتخاب  دسته بندی </option>
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}"
+                                                        @if($category->id == old('category_id')) selected @endif
+                                                >{{ $category->name }} </option>
+                                            @endforeach
+                                        </select>
+                                        <x-validation-error field="category_id"/>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
                                         <label>تگ ها</label>
-                                        <select class="form-control select2" multiple name="tag_id[]">
-                                            <option value>  انتخاب  تگ </option>
+                                        <select class="form-control select2" id="tag-select2" multiple name="tag_ids[]">
                                             @foreach($tags as $tag)
                                                 <option value="{{ $tag->id }}"
-                                                        @if($tag->id == old('tag_id')) selected @endif
+                                                  @if( is_array(old('tag_ids')) && in_array($tag->id ,  old('tag_ids'))) selected @endif
                                                 > {{ $tag->name }} </option>
                                             @endforeach
                                         </select>
                                         <x-validation-error field="tag_id"/>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -135,28 +125,6 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="form-group">
-                                    <p> انتخاب ویژگی های محصول</p>
-                                <div class="row ">
-                                    <div class="col-md-4 offset-4 mb-3">
-                                        <label>انتخاب دسته بندی محصول</label>
-                                        <select class="form-control" id="category_id" name="category_id">
-                                            <option value>  انتخاب  دسته بندی </option>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}"
-                                                        @if($category->id == old('category_id')) selected @endif
-                                                > {{ $category->name }} </option>
-                                            @endforeach
-                                        </select>
-                                        <x-validation-error field="category_id"/>
-                                    </div>
-                                </div>
-
-                                <div class="row" id="category-row">
-
-                                </div>
-                                <hr>
-                            </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-3 mb-3">

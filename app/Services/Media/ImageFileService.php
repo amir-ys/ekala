@@ -16,7 +16,11 @@ class ImageFileService
         }
         $filename = $filename . '.' . $file->getClientOriginalExtension();
         Storage::putFileAs($path , $file ,$filename);
-        return $path . DIRECTORY_SEPARATOR .  $filename;
+        return $filename;
     }
 
+    public static function delete($fileName)
+    {
+       return Storage::delete($fileName);
+    }
 }

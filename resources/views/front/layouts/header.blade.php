@@ -241,9 +241,10 @@
                         <div class="title"> مشتریان ثبت شده</div>
                         <div class="top-text"> اگر در ما حساب کاربری دارید ، لطفاً وارد شوید.</div>
                         <!-- form -->
-                        <form action="#">
-                            <input type="text" class="form-control" placeholder="ایمیل*">
-                            <input type="text" class="form-control" placeholder="پسورد*">
+                        <form action="{{ route('login') }}" method="post">
+                            @csrf
+                            <input type="email" class="form-control" placeholder="ایمیل*">
+                            <input type="password" class="form-control" placeholder="پسورد*">
                             <button type="submit" class="btn">ورود</button>
                         </form>
                         <!-- /form -->

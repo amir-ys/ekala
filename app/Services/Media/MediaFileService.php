@@ -11,12 +11,14 @@ class MediaFileService
     private static $file;
     private static $subDirectory;
     private static $isPrimary;
+    private static $isPrivate;
     private static $productId;
     public static function privateUpload(UploadedFile $file , $productId , $subDirectory ,  $primary = false )
     {
         static::$dir = 'private';
         static::$productId = $productId;
         static::$isPrimary = $primary;
+        static::$isPrivate = 'private';
         static::$file = $file;
         static::$subDirectory = $subDirectory;
         static::upload();
@@ -28,6 +30,7 @@ class MediaFileService
         static::$dir = 'public';
         static::$productId = $productId;
         static::$isPrimary = $primary;
+        static::$isPrivate = 'public';
         static::$file = $file;
         static::$subDirectory = $subDirectory;
         static::upload();
@@ -44,6 +47,7 @@ class MediaFileService
         $media->product_id = static::$productId;
         $media->client_file_name = static::getClientFileName(static::$file);
         $media->is_primary = static::$isPrimary;
+        $media->is_private = static::$isPrivate == 'private' ? 1 : 0;
         $media->save();
 
     }
@@ -63,6 +67,15 @@ class MediaFileService
     private static function filenameGenerator()
     {
         return uniqid();
+    }
+
+    public static function delete(Media $file)
+    {
+        if ($file->is_private == true){
+          return ImageFileService::delete( 'private\\' . $file->files);
+        }else{
+          return ImageFileService::delete( 'public\\' . $file->files);
+        }
     }
 
 }
