@@ -39,12 +39,16 @@ Route::group(
 
     //products
     Route::get('products/{product}/images' , [ProductController::class , 'uploadImagesView'] )->name('products.uploadImages.view');
+
+    //product image
     Route::get('products/{image}/display-image' , [ProductController::class , 'displayImage'] )->name('products.displayImage');
     Route::delete('products/image/{image}/delete' , [ProductController::class , 'deleteImage'] )->name('products.image.delete');
     Route::delete('products/{product}/image/deleteAll' , [ProductController::class , 'deleteAllImage'] )->name('products.image.deleteAll');
     Route::post('products/{product}/image/upload' , [ProductController::class , 'uploadImage'] )->name('products.image.upload');
 
-    Route::get('products/get-category-attribute/{id}' , [ProductController::class , 'getCategoryAttribute'] )->name('products.getCategoryAttribute');
+    //product attribute
+    Route::get('products/{product}/attribute' , [ProductController::class , 'productAttributeView'] )->name('products.attribute.view');
+    Route::get('products/{product}/attribute/store' , [ProductController::class , 'productAttributeStore'] )->name('products.attribute.store');
 });
 
 require __DIR__.'/auth.php';

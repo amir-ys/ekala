@@ -56,16 +56,11 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('panel.products.uploadImages.view', $product->id) }}" class="btn btn-sm bg-transparent d-inline "><i
-                                            class="fas fa-plus  text-success" title="افزودن"></i>  ویرایش </a>
-                                    <a href="{{ route('panel.products.show' , $product->id) }}" class="btn btn-sm bg-transparent d-inline "><i
-                                            class="fas fa-plus  text-primary" title="نمایش"></i>  نمایش </a>
+                                            class="fas fa-pen  text-success" title="ویرایش"></i>  ویرایش </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('panel.products.show' , $product->id) }}" class="btn btn-sm bg-transparent d-inline "><i
-                                            class="fas fa-plus fa-15m text-success" title="افزودن"></i> افزودن  </a>
-                                    <a href="{{ route('panel.products.show' , $product->id) }}" class="btn btn-sm bg-transparent d-inline "
-                                       title="نمایش"><i
-                                            class="fas fa-eye fa-15m text-primary"></i> نمایش  </a>
+                                    <a href="{{ route('panel.products.attribute.view' , $product->id) }}" class="btn btn-sm bg-transparent d-inline "><i
+                                            class="fas fa-plus fa-15m text-primary" title="افزودن"></i> افزودن  </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('panel.products.show' , $product->id) }}" class="btn btn-sm bg-transparent d-inline "><i

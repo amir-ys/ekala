@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Product\StoreProductRequest;
 use App\Http\Requests\Panel\Product\UpdateProductRequest;
 use App\Http\Requests\Panel\Product\UploadImageRequest;
+use App\Http\Requests\ProductAttributeRequest;
 use App\Http\responses\AjaxResponse;
 use App\Models\Brand;
 use App\Models\Category;
@@ -95,7 +96,6 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request , Product $product)
     {
-        dd($request->all());
         //store products
         $product = $product->update([
             'name' => $request->name,
@@ -109,7 +109,7 @@ class ProductController extends Controller
             'delivery_amount_per_product' => $request->delivery_amount_per_product,
         ]);
 
-        $product->tags()->attach();
+        $product->tags()->sync();
 
     }
 
@@ -187,5 +187,20 @@ class ProductController extends Controller
         }
         newFeedback(  'عملیات موفق' ,'فایل با موفقیت آپلود شد');
         return back();
+    }
+
+    public function productAttributeView(Product  $product)
+    {
+        return view('panel.products.product-attribute' , compact('product'));
+    }
+
+    public function productAttributeStore(ProductAttributeRequest $request , Product  $product)
+    {
+        $attributes = $request->attribute_ids;
+        $product->attributes()->sync([]);
+        foreach ($attributes as  $attributeId => $attributeValue){
+            $product->attributes()->attach([ $attributeId ] , ['value' => $attributeValue]);
+        }
+        return redirect()->route('panel.products.index');
     }
 }

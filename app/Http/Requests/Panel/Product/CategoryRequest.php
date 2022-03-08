@@ -23,7 +23,6 @@ class CategoryRequest extends FormRequest
             'status' => ['required' , Rule::in(Category::$statuses)],
             'attribute_ids' => ['required' , 'array' ] ,
             'attribute_filter_ids' => ['required' , 'array' ] ,
-            'attribute_variation_id' => ['required' ]
         ];
 
         if (request()->method() == 'PATCH'){
