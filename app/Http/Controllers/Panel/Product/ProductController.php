@@ -34,6 +34,14 @@ class ProductController extends Controller
         return view('panel.products.create' , compact('brands' , 'categories' , 'tags'));
     }
 
+    public function show(Product $product)
+    {
+        $brands =Brand::all();
+        $categories =Category::all();
+        $tags = Tag::all();
+        return view('panel.products.show' , compact('product'  , 'brands' , 'categories' , 'tags'));
+    }
+
     public function store(StoreProductRequest $request)
     {
         DB::transaction(function () use ($request) {
@@ -74,18 +82,6 @@ class ProductController extends Controller
         return redirect()->route('panel.products.index');
     }
 
-    public function getCategoryAttribute($categoryId)
-    {
-        $category = Category::find($categoryId);
-        if (!$category){
-           return AjaxResponse::error('دسته بندی با این  ایدی پیدا نشد.');
-        }
-        $attributes = $category->attributes()->wherePivot('is_variation' , 0)->get();
-        $variation = $category->attributes()->wherePivot('is_variation' , 1)->first();
-        return  AjaxResponse::sendData(['attributes' => $attributes , 'variation' => $variation] ,
-            'ویژگی های دسته بندی با موفقیت پیدا شد .');
-    }
-
     public function edit(Product $product)
     {
         $brands =Brand::all();
@@ -96,8 +92,8 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request , Product $product)
     {
-        //store products
-        $product = $product->update([
+        //update products
+        $product->update([
             'name' => $request->name,
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
@@ -109,8 +105,10 @@ class ProductController extends Controller
             'delivery_amount_per_product' => $request->delivery_amount_per_product,
         ]);
 
-        $product->tags()->sync();
+        //sync products
+        $product->tags()->sync($request->tag_ids);
 
+        return redirect()->route('panel.products.index') ;
     }
 
     public function uploadImagesView( Product $product)
@@ -120,11 +118,6 @@ class ProductController extends Controller
         return view('panel.products.upload-image' ,compact('product' ,
             'primaryImage' , 'images'
         ));
-    }
-
-    public function uploadImages (UploadImageRequest $request ,Product $product)
-    {
-        dd($request->all());
     }
 
    public function displayImage($filename)

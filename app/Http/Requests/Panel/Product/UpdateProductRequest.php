@@ -31,13 +31,28 @@ class UpdateProductRequest extends FormRequest
             'quantity' => ['required', 'numeric'],
             'brand_id' => ['required', Rule::exists('brands', 'id')],
             'status' => ['required', Rule::in(Product::$statuses)],
-            'tag_id' => ['required', Rule::exists('tags', 'id')],
+            'tag_ids' => ['required', 'array' ],
+            'tag_ids.*' => ['required', Rule::exists('tags', 'id')],
             'description' => ['required', 'string'],
-            'primary_image' => ['nullable', 'mimes:jpg,jpeg,png'],
-            'images.*' => ['nullable', 'mimes:jpg,jpeg,png'],
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'delivery_amount' => ['required', 'numeric'],
             'delivery_amount_per_product' => ['nullable', 'numeric'],
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'brand_id' => 'برند' ,
+            'category_id' => 'دسته بندی'  ,
+            'tag_ids.*' => 'تگ'  ,
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'tag_ids.*.required' => 'فیلد تگ الزامی است.'
         ];
     }
 }

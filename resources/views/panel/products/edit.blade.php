@@ -7,31 +7,9 @@
     <script src="{{ URL::asset('/assets/libs/select2/select2.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/pages/form-advanced.init.js') }}"></script>
     <script>
-
-        $('#category_id').change(function () {
-            var categoryId = $(this).val() ? $(this).val() :  0 ;
-            var url = '{{ route('panel.products.getCategoryAttribute' , 'id') }}'.replace('id' , categoryId)
-            $.ajax({
-                url : url ,
-                type : 'get' ,
-                success :function (response) {
-                    if(response.status === 1){
-                        $('#category-row').html(null);
-                        response.data.attributes.forEach(function (attribute) {
-                            var attributeFormGroup = $(`<div class="col-md-3 mb-3" ></div>`);
-                            attributeFormGroup.append(`<label> ${attribute.name} </label>`)
-                            attributeFormGroup.append(`<input type="text" class="form-control"
-                                    name="attribute_ids[${attribute.id}]" />`)
-                            $('#category-row').append(attributeFormGroup);
-                        })
-                    }else if(response.status === -1){
-                        $('#category-row').html(null);
-                    }
-                }
-
-            })
+        $('#tag-select2').select2({
+            placeholder: "انتخاب تگ",
         })
-
 
     </script>
 @endsection
@@ -45,8 +23,9 @@
             <div class="card border border-5">
                 <div class="card-body">
                     <div class="row mb-3">
-                        <form method="POST" action="{{ route('panel.products.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('panel.products.update' , $product->id) }}" enctype="multipart/form-data">
                             @csrf
+                            @method('PATCH')
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-3 mb-3">
@@ -90,24 +69,36 @@
                                         <select class="form-control" name="status">
                                             @foreach(\App\Models\Product::$statuses as $statusName => $status)
                                                 <option value="{{ $status }}"
-                                                        @if($status == $product->status) selected
-                                                        @elseif($status == old('status')) selected @endif>
+                                                        @if($status == $product->status) selected @endif>
                                                     {{ $statusName }} </option>
                                             @endforeach
                                         </select>
                                         <x-validation-error field="status"/>
                                     </div>
+
+                                    <div class="col-md-3 mb-3">
+                                        <label>دسته بندی ها</label>
+                                        <select class="form-control"  name="category_id">
+                                            <option value>  انتخاب  دسته بندی </option>
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}"
+                                                        @if($category->id == $product->category_id) selected @endif
+                                                        @if($category->id == old('category_id')) selected @endif
+                                                >{{ $category->name }} </option>
+                                            @endforeach
+                                        </select>
+                                        <x-validation-error field="category_id"/>
+                                    </div>
                                     <div class="col-md-3 mb-3">
                                         <label>تگ ها</label>
-                                        <select class="form-control select2" multiple name="tag_id[]">
-                                            <option value>  انتخاب  تگ </option>
+                                        <select class="form-control select2" multiple name="tag_ids[]" id="tag-select2">
                                             @foreach($tags as $tag)
                                                 <option value="{{ $tag->id }}"
                                                         @if($product->tags->contains($tag->id)) selected @endif
                                                 > {{ $tag->name }} </option>
                                             @endforeach
                                         </select>
-                                        <x-validation-error field="tag_id"/>
+                                        <x-validation-error field="tag_id.*"/>
                                     </div>
                                 </div>
                             </div>
@@ -115,50 +106,12 @@
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
                                         <label>توضیحات</label>
-                                        <textarea class="form-control" name="description"> {{ old('description' , $product->description) }}</textarea>
+                                        <textarea rows="5" class="form-control" name="description"> {{ old('description' , $product->description) }}</textarea>
                                         <x-validation-error field="description"/>
                                     </div>
                                 </div>
                             </div>
                             <hr>
-                            <div class="form-group">
-                                <div class="row">
-                                    <p> انتخاب تصاویر محصول : </p>
-                                    <div class="col-md-4 mb-3">
-                                        <label>انتخاب تصویر اصلی</label>
-                                        <input type="file" class="form-control" name="primary_image" />
-                                        <x-validation-error field="primary_image"/>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label>انتخاب تصاوبر دیگر</label>
-                                        <input type="file" multiple class="form-control" name="images[]" />
-                                        <x-validation-error field="images"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="form-group">
-                                <p> انتخاب ویژگی های محصول</p>
-                                <div class="row ">
-                                    <div class="col-md-4 offset-4 mb-3">
-                                        <label>انتخاب دسته بندی محصول</label>
-                                        <select class="form-control" id="category_id" name="category_id">
-                                            <option value>  انتخاب  دسته بندی </option>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}"
-                                                        @if($category->id == old('category_id')) selected @endif
-                                                > {{ $category->name }} </option>
-                                            @endforeach
-                                        </select>
-                                        <x-validation-error field="category_id"/>
-                                    </div>
-                                </div>
-
-                                <div class="row" id="category-row">
-
-                                </div>
-                                <hr>
-                            </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-3 mb-3">

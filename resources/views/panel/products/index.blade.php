@@ -46,7 +46,7 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ $product->price }}</td>
+                                <td>{{  number_format($product->price)  }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->brand->name }}</td>
                                 <td>{{ $product->category->name }}</td>
