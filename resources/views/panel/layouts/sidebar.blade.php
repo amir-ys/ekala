@@ -68,6 +68,14 @@
                         </li>
                     </ul>
                 </li>
+
+                <li>
+                    <a href="{{ route('panel.banners.index') }}" class="waves-effect">
+                        <i class="bx bx-slider"></i>
+                        <span key="t-banner">بنرها</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->

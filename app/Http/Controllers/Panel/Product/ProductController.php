@@ -3,18 +3,16 @@
 namespace App\Http\Controllers\Panel\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Panel\Product\ProductAttributeRequest;
 use App\Http\Requests\Panel\Product\StoreProductRequest;
 use App\Http\Requests\Panel\Product\UpdateProductRequest;
 use App\Http\Requests\Panel\Product\UploadImageRequest;
-use App\Http\Requests\ProductAttributeRequest;
-use App\Http\responses\AjaxResponse;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Media;
 use App\Models\Product;
 use App\Models\Tag;
 use App\Services\Media\MediaFileService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;

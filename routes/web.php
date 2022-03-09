@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Panel\Banner\BannerController;
 use App\Http\Controllers\Panel\Brand\BrandController;
 use App\Http\Controllers\Panel\Product\AttributeController;
 use App\Http\Controllers\Panel\Product\CategoryController;
@@ -49,6 +50,10 @@ Route::group(
     //product attribute
     Route::get('products/{product}/attribute' , [ProductController::class , 'productAttributeView'] )->name('products.attribute.view');
     Route::get('products/{product}/attribute/store' , [ProductController::class , 'productAttributeStore'] )->name('products.attribute.store');
-});
+
+    //banner
+    Route::resource('banners' , BannerController::class);
+
+    });
 
 require __DIR__.'/auth.php';
