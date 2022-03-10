@@ -10,8 +10,8 @@ class Media extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function products()
+    public function mediable()
     {
-        return $this->belongsTo(Product::class , 'product_id');
+        return $this->morphTo();
     }
 }

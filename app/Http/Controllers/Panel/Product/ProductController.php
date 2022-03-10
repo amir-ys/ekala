@@ -169,11 +169,11 @@ class ProductController extends Controller
                 $image->delete();
                 MediaFileService::delete($image);
             }
-            MediaFileService::publicUpload($request->primary_image , $product->id , '' , true );
+            MediaFileService::publicUpload($request->primary_image , $product , '' , true );
         }elseif ($request->hasFile('images')){
             $images = $request->images;
             foreach ($images as $image){
-                MediaFileService::publicUpload($image , $product->id , '' , false );
+                MediaFileService::publicUpload($image , $product , '' , false );
             }
         }
         newFeedback(  'عملیات موفق' ,'فایل با موفقیت آپلود شد');

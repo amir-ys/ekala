@@ -12,11 +12,11 @@ class MediaFileService
     private static $subDirectory;
     private static $isPrimary;
     private static $isPrivate;
-    private static $productId;
-    public static function privateUpload(UploadedFile $file , $productId , $subDirectory ,  $primary = false )
+    private static $model;
+    public static function privateUpload(UploadedFile $file , $model , $subDirectory ,  $primary = false )
     {
         static::$dir = 'private';
-        static::$productId = $productId;
+        static::$model = $model;
         static::$isPrimary = $primary;
         static::$isPrivate = 'private';
         static::$file = $file;
@@ -25,10 +25,10 @@ class MediaFileService
 
     }
 
-    public static function publicUpload(UploadedFile $file , $productId , $subDirectory ,  $primary = false )
+    public static function publicUpload(UploadedFile $file , $model , $subDirectory ,  $primary = false )
     {
         static::$dir = 'public';
-        static::$productId = $productId;
+        static::$model = $model;
         static::$isPrimary = $primary;
         static::$isPrivate = 'public';
         static::$file = $file;
@@ -44,7 +44,8 @@ class MediaFileService
         $media->files = ImageFileService::upload(static::$file , $fileName , static::$dir , static::$subDirectory);
         $media->type = static::getFileType(static::$file);
         $media->user_id = auth()->id();
-        $media->product_id = static::$productId;
+        $media->mediable_id = static::$model->id;
+        $media->mediable_type = get_class(static::$model);
         $media->client_file_name = static::getClientFileName(static::$file);
         $media->is_primary = static::$isPrimary;
         $media->is_private = static::$isPrivate == 'private' ? 1 : 0;

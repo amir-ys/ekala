@@ -18,7 +18,8 @@ class CreateMediaTable extends Migration
             $table->string('files');
             $table->string('type');
             $table->foreignId('user_id');
-            $table->foreignId('product_id')->constrained('products');
+            $table->foreignId('mediable_id');
+            $table->string('mediable_type');
             $table->string('client_file_name')->nullable();
             $table->tinyInteger('is_primary')->default(0)->nullable();
             $table->tinyInteger('is_private')->default(0)->nullable();

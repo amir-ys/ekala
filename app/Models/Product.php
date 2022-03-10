@@ -62,6 +62,6 @@ class Product extends Model
 
     public function images()
     {
-        return $this->hasMany(Media::class , 'product_id' , 'id');
+        return $this->morphMany(Media::class , 'mediable');
     }
 }
