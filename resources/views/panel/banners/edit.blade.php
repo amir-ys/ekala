@@ -1,21 +1,15 @@
 @extends('panel.layouts.master')
-@section('title') ویرایش محصول  @endsection
+@section('title') وبرابش بنرها  @endsection
 @section('css')
     <link href="{{ URL::asset('/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
 @section('script')
     <script src="{{ URL::asset('/assets/libs/select2/select2.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/pages/form-advanced.init.js') }}"></script>
-    <script>
-        $('#tag-select2').select2({
-            placeholder: "انتخاب تگ",
-        })
-
-    </script>
 @endsection
 @section('content')
     @component('panel.components.breadcrumb')
-        @slot('title') ویرایش محصول @endslot
+        @slot('title') ویرایش بنر @endslot
         @slot('li_1')  داشبرد @endslot
     @endcomponent
     <div class="row">
@@ -23,119 +17,99 @@
             <div class="card border border-5">
                 <div class="card-body">
                     <div class="row mb-3">
-                        <form method="POST" action="{{ route('panel.products.update' , $product->id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('panel.banners.update' , $banner->id) }}" enctype="multipart/form-data">
                             @csrf
-                            @method('PATCH')
+                            @method('put')
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-3 mb-3">
-                                        <label>نام</label>
-                                        <input type="text" class="form-control" name="name"
-                                               placeholder="نام"
-                                               value="{{ old('name' ,  $product->name) }}">
-                                        <x-validation-error field="name"/>
+                                        <label>عنوان</label>
+                                        <input type="text" class="form-control" name="title"
+                                               placeholder="عنوان"
+                                               value="{{ old('title' , $banner->title) }}">
+                                        <x-validation-error field="title"/>
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label>قیمت</label>
-                                        <input type="text" class="form-control" name="price"
-                                               placeholder="قیمت"
-                                               value="{{ old('price' , $product->price) }}">
-                                        <x-validation-error field="price"/>
+                                        <label>اولویت</label>
+                                        <input type="number" class="form-control" name="priority"
+                                               placeholder="اولویت"
+                                               value="{{ old('priority' , $banner->priority) }}">
+                                        <x-validation-error field="priority"/>
                                     </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label>موجودی</label>
-                                        <input type="text" class="form-control" name="quantity"
-                                               placeholder="موجودی"
-                                               value="{{ old('quantity' , $product->quantity) }}">
-                                        <x-validation-error field="quantity"/>
-                                    </div>
-
-                                    <div class="col-md-3 mb-3">
-                                        <label>برند</label>
-                                        <select class="form-control" name="brand_id">
-                                            <option value>  انتخاب  برند </option>
-                                            @foreach($brands as $brand)
-                                                <option value="{{ $brand->id }}"
-                                                        @if($brand->id == $product->brand_id) selected
-                                                        @elseif($brand->id == old('brand_id')) selected @endif>
-                                                    {{ $brand->name }} </option>
-                                            @endforeach
-                                        </select>
-                                        <x-validation-error field="brand_id"/>
-                                    </div>
-
                                     <div class="col-md-3 mb-3">
                                         <label>وضعیت</label>
-                                        <select class="form-control" name="status">
-                                            @foreach(\App\Models\Product::$statuses as $statusName => $status)
+                                        <select class="form-control" name="status" >
+                                            <option value>وضعیت را انتخاب کنید</option>
+                                            @foreach(\App\Models\Banner::$statuses as $statusName =>  $status)
                                                 <option value="{{ $status }}"
-                                                        @if($status == $product->status) selected @endif>
-                                                    {{ $statusName }} </option>
+                                                @if($status == $banner->status) selected @endif > {{ $statusName }}</option>
                                             @endforeach
                                         </select>
                                         <x-validation-error field="status"/>
                                     </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label>نوع</label>
+                                        <input type="text" class="form-control" name="type"
+                                               placeholder="نوع"
+                                               value="{{ old('type' , $banner->type) }}">
+                                        <x-validation-error field="type"/>
+                                    </div>
 
                                     <div class="col-md-3 mb-3">
-                                        <label>دسته بندی ها</label>
-                                        <select class="form-control"  name="category_id">
-                                            <option value>  انتخاب  دسته بندی </option>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}"
-                                                        @if($category->id == $product->category_id) selected @endif
-                                                        @if($category->id == old('category_id')) selected @endif
-                                                >{{ $category->name }} </option>
-                                            @endforeach
-                                        </select>
-                                        <x-validation-error field="category_id"/>
+                                        <label>لینک بنر</label>
+                                        <input type="text" class="form-control" name="btn_link"
+                                               placeholder="لینک بنر"
+                                               value="{{ old('btn_link' , $banner->btn_link) }}">
+                                        <x-validation-error field="btn_link"/>
                                     </div>
+
                                     <div class="col-md-3 mb-3">
-                                        <label>تگ ها</label>
-                                        <select class="form-control select2" multiple name="tag_ids[]" id="tag-select2">
-                                            @foreach($tags as $tag)
-                                                <option value="{{ $tag->id }}"
-                                                        @if($product->tags->contains($tag->id)) selected @endif
-                                                > {{ $tag->name }} </option>
-                                            @endforeach
-                                        </select>
-                                        <x-validation-error field="tag_id.*"/>
+                                        <label> متن دکمه</label>
+                                        <input type="text" class="form-control" name="btn_text"
+                                               placeholder="متن دکمه"
+                                               value="{{ old('btn_text' , $banner->btn_text) }}">
+                                        <x-validation-error field="btn_text"/>
                                     </div>
+
+                                    <div class="col-md-3 mb-3">
+                                        <label> آیکون دکمه</label>
+                                        <input type="text" class="form-control" name="btn_icon"
+                                               placeholder="آیکون دکمه"
+                                               value="{{ old('btn_icon' , $banner->btn_icon) }}">
+                                        <x-validation-error field="btn_icon"/>
+                                    </div>
+
+
                                 </div>
-                            </div>
-                            <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <label>توضیحات</label>
-                                        <textarea rows="5" class="form-control" name="description"> {{ old('description' , $product->description) }}</textarea>
-                                        <x-validation-error field="description"/>
+                                        <label>عنوان</label>
+                                        <textarea  class="form-control" name="body"
+                                                   placeholder="توضیحات">  {{ old('body' , $banner->body) }}
+                                        </textarea>
+                                        <x-validation-error field="body"/>
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-3 mb-3">
-                                        <label> هزینه ارسال </label>
-                                        <input type="text" class="form-control" name="delivery_amount"
-                                               placeholder="هزینه ارسال"
-                                               value="{{ old('delivery_amount' , $product->delivery_amount) }}">
-                                        <x-validation-error field="delivery_amount"/>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label> هزینه ارسال برای این محصول</label>
-                                        <input type="text" class="form-control" name="delivery_amount_per_product"
-                                               placeholder="هزینه ارسال برای این محصول"
-                                               value="{{ old('delivery_amount_per_product' , $product->delivery_amount_per_product) }}">
-                                        <x-validation-error field="delivery_amount_per_product"/>
-                                    </div>
-                                </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label>عکس  بنر</label>
+
+                                <input type="file" class="form-control" name="image"
+                                           placeholder="عکس بنر"
+                                           value="{{ old('image') }}">
+                                <x-validation-error field="image"/>
+                                @if(isset($banner->image))
+                                    <label>عکس فعلی:  {{ $banner->image->client_file_name }}</label>
+
+                                    <img src="{{ route('panel.products.displayImage' , $banner->image->files) }}" width="300" alt="">
+                                @endif
                             </div>
-                            <br>
                             <div class="d-flex flex-wrap gap-2">
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
                                     ذخیره
                                 </button>
-                                <a href="{{ route('panel.products.index') }}" class="btn btn-secondary waves-effect">
+                                <a href="{{ route('panel.banners.index') }}" class="btn btn-secondary waves-effect">
                                     بازگشت
                                 </a>
                             </div>

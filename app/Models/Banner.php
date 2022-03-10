@@ -23,4 +23,9 @@ class Banner extends Model
         return $this->status ? 'فعال' : 'غبر فعال' ;
    }
 
+    public function image()
+    {
+        return $this->morphOne(Media::class, 'mediable');
+   }
+
 }

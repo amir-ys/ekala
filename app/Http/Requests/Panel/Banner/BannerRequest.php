@@ -25,8 +25,8 @@ class BannerRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-//            'image' => [ 'required' , 'mimes:jpeg,jpg,png' , 'max:5120'] ,
+        $rules =  [
+            'image' => [ 'required' , 'mimes:jpeg,jpg,png' , 'max:5120'] ,
             'title' => [ 'required' , 'string'  ] ,
             'body' => [ 'required' , 'string'  ] ,
             'priority' => [ 'nullable' , 'numeric'  ] ,
@@ -36,5 +36,11 @@ class BannerRequest extends FormRequest
             'btn_text' => [ 'nullable' , 'string'] ,
             'btn_icon' => [ 'nullable' , 'string'] ,
         ];
+
+        if (in_array(request()->method() , ['PUT' , 'PATCH'])){
+            $rules['image'] =  [ 'nullable' , 'mimes:jpeg,jpg,png' , 'max:5120'];
+        }
+
+        return  $rules;
     }
 }

@@ -44,17 +44,21 @@
                             @foreach($banners as $banner)
                             <tr>
                                 <td>{{ $i++ }}</td>
-                                <td> aks </td>
+                                <td>
+                                    <span>
+                                        @if(isset($banner->image) && !is_null($banner->image->files))
+                                        <img src="{{ route('panel.products.displayImage' , $banner->image->files) }}" width="100" alt="">
+                                        @endif
+                                    </span>
+                                </td>
                                 <td>{{  $banner->title  }}</td>
                                 <td>{{ $banner->body }}</td>
                                 <td>{{ $banner->statusName  }}</td>
-                                <td>{{ $banner->type }}</td>
+                                <td>{{ $banner->type ?? '-' }}</td>
                                 <td>{{ $banner->created_at }}</td>
                                 <td>{{ $banner->btn_link }}</td>
-                                <td>{{ $banner->btn_text }}</td>
+                                <td>{{ $banner->btn_text ?? '-' }}</td>
                                 <td>
-                                    <a href="{{ route('panel.banners.show' , $banner->id) }}" class="btn btn-sm bg-transparent d-inline "><i
-                                            class="fas fa-eye fa-15m text-primary"></i></a>
                                     <a class="btn btn-sm bg-transparent d-inline"
                                        href="{{ route('panel.banners.edit' , $banner->id) }}"><i
                                             class="fas fa-pen fa-15m text-success"></i></a>

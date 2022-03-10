@@ -21,11 +21,11 @@ class MediaFileService
         static::$isPrivate = 'private';
         static::$file = $file;
         static::$subDirectory = $subDirectory;
-        static::upload();
+       return static::upload();
 
     }
 
-    public static function publicUpload(UploadedFile $file , $model , $subDirectory ,  $primary = false )
+    public static function publicUpload(UploadedFile $file , $model , $subDirectory = '' ,  $primary = false )
     {
         static::$dir = 'public';
         static::$model = $model;
@@ -33,7 +33,7 @@ class MediaFileService
         static::$isPrivate = 'public';
         static::$file = $file;
         static::$subDirectory = $subDirectory;
-        static::upload();
+       return static::upload();
     }
 
 
@@ -50,7 +50,7 @@ class MediaFileService
         $media->is_primary = static::$isPrimary;
         $media->is_private = static::$isPrivate == 'private' ? 1 : 0;
         $media->save();
-
+        return $media;
     }
 
     private static function getFileType(UploadedFile $file)
