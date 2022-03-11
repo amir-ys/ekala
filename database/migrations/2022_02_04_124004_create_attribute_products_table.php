@@ -17,7 +17,7 @@ class CreateAttributeProductsTable extends Migration
             $table->foreignId('attribute_id')->constrained('attributes');
             $table->foreignId('product_id')->constrained('products');
             $table->string('value');
-            $table->integer('status')->default(1);
+            $table->tinyInteger('status')->default(1);
         });
     }
 

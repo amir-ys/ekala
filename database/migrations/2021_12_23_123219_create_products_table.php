@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('quantity');
             $table->string('slug')->unique();
             $table->string('description');
-            $table->integer('status');
+            $table->tinyInteger('status');
             $table->string('delivery_amount')->nullable();
             $table->string('delivery_amount_per_product')->nullable();
             $table->timestamps();

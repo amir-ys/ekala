@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends \Spatie\Permission\Models\Permission
 {
+    use HasFactory;
     const GUARD_WEB = 'web' ;
     protected static function boot()
     {
