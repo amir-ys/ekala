@@ -16,7 +16,7 @@ class CreateAttributeCategoriesTable extends Migration
         Schema::create('attribute_categories', function (Blueprint $table) {
             $table->foreignId('attribute_id')->constrained();
             $table->foreignId('category_id')->constrained();
-            $table->tinyInteger('is_filter');
+            $table->tinyInteger('is_filter')->default(0);
 //            $table->string('is_variation');
             $table->primary(['attribute_id' , 'category_id']);
         });

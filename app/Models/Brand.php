@@ -28,6 +28,11 @@ class Brand extends Model
         'غیر فعال' =>  self::STATUS_DEACTIVE ,
     ];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public function statusName($status = null)
     {
         if (is_null($status)) $status = $this->status ;
