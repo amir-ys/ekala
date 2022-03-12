@@ -19,7 +19,7 @@ class BrandController extends Controller
             'name' => $request->name ,
            'status' => $request->status
         ]);
-        newFeedback(null , 'برند با موفقیت ایجاد شد ' );
+        newFeedback(null , 'برند با موفقیت ایجاد شد' );
         return back();
     }
 

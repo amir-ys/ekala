@@ -16,7 +16,6 @@ class BrandFactory extends Factory
     {
         return [
             'name' => $this->faker->word() ,
-            'slug' => $this->faker->slug() ,
             'status' => new Sequence(1 ,0)
         ];
     }
