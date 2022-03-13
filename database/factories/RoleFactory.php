@@ -15,8 +15,8 @@ class RoleFactory extends Factory
     public function definition()
     {
         return [
-            'fa_name' => $this->faker->word ,
-            'name' => $this->faker->unique->word ,
+            'fa_name' => $this->faker->text(5) ,
+            'name' => $this->faker->unique->text(5) ,
             'guard_name' => new Sequence('web' , 'api')
         ];
     }

@@ -28,26 +28,6 @@ class CategoryController extends Controller
         return view('panel.categories.create' , compact('parentCategories', 'attributes'));
     }
 
-    public function store(CategoryRequest $request)
-    {
-       $category =  Category::query()->create([
-            'name' => $request->name ,
-            'parent_id' => $request->parent_id ,
-            'slug' => Str::slug($request->slug),
-            'status' => $request->status ,
-            'description' => $request->description ,
-            'icon' => $request->icon ,
-        ]);
-
-       foreach ($request->attribute_ids as $attribute)
-       $category->attributes()->attach( $attribute , [
-           'is_filter' =>  in_array($attribute ,$request->attribute_filter_ids) ? 1 : 0 ,
-//           'is_variation' =>   $attribute == $request->attribute_variation_id ?   1 : 0
-       ]);
-       newFeedback(null , 'دسته بندی با موفقیت ایجاد شد . ');
-       return redirect()->route('panel.categories.index');
-    }
-
     public function edit(Category $category)
     {
         $categoryId = $category->id;
@@ -56,6 +36,26 @@ class CategoryController extends Controller
     });
         $attributes = Attribute::all();
         return view('panel.categories.edit' , compact('category'  ,'attributes' , 'parentCategories'));
+    }
+
+    public function store(CategoryRequest $request)
+    {
+        $category =  Category::query()->create([
+            'name' => $request->name ,
+            'parent_id' => $request->parent_id ,
+            'slug' => Str::slug($request->slug),
+            'status' => $request->status ,
+            'description' => $request->description ,
+            'icon' => $request->icon ,
+        ]);
+
+        foreach ($request->attribute_ids as $attribute)
+            $category->attributes()->attach( $attribute , [
+                'is_filter' =>  in_array($attribute ,$request->attribute_filter_ids) ? 1 : 0 ,
+//           'is_variation' =>   $attribute == $request->attribute_variation_id ?   1 : 0
+            ]);
+        newFeedback(null , 'دسته بندی با موفقیت ایجاد شد . ');
+        return redirect()->route('panel.categories.index');
     }
 
     public function update(CategoryRequest $request , Category $category)

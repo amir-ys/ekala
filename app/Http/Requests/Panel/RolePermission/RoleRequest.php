@@ -19,7 +19,9 @@ class RoleRequest extends FormRequest
     {
         $roles =  [
             'fa_name' => 'string|min:3' ,
-            'name' => ['required' , 'string' , 'min:3' , Rule::unique('roles' , 'name' )]
+            'name' => ['required' , 'string' , 'min:3' , Rule::unique('roles' , 'name' )] ,
+            'permissions' => ['required' , 'array' ] ,
+            'permissions.*' => [ 'numeric' , Rule::exists('permissions' , 'id') ] ,
         ];
 
         if (request()->getMethod() == "PATCH"){

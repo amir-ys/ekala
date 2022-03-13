@@ -68,6 +68,7 @@ class RoleController extends Controller
 
     public function destroy(Role $role)
     {
+        $role->syncPermissions([]);
         $role->delete();
         return response()->json(['message' => 'نقش کاربری '.$role->fa_name.'  حذف شد.']);
     }

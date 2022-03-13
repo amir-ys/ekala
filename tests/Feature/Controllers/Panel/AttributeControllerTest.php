@@ -33,7 +33,7 @@ class AttributeControllerTest extends TestCase
             ->assertViewHas('attribute' , $attribute);
     }
 
-    public function test_store_Attribute()
+    public function test_store_attribute()
     {
         $this->actingAsUser();
         $data = Attribute::factory()->make()->toArray();
@@ -45,7 +45,7 @@ class AttributeControllerTest extends TestCase
         $this->assertDatabaseHas( 'attributes', $data );
     }
 
-    public function test_update_Attribute()
+    public function test_update_attribute()
     {
         $this->actingAsUser();
         $attribute = Attribute::factory()->create();
@@ -58,7 +58,7 @@ class AttributeControllerTest extends TestCase
         $this->assertDatabaseHas( 'attributes', $data );
     }
 
-    public function test_destroy_Attribute()
+    public function test_destroy_attribute()
     {
         $this->actingAsUser();
         $attribute = Attribute::factory()->create();
