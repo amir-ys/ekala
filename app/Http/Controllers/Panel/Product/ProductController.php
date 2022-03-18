@@ -57,22 +57,24 @@ class ProductController extends Controller
                 'delivery_amount_per_product' => $request->delivery_amount_per_product,
             ]);
 
+
             // attach tags to product
             $tag_ids = $request->tag_ids;
             foreach ($tag_ids as $tag_id){
             $product->tags()->attach($tag_id);
             }
 
-            //upload file\
+            //upload file
             //primary
             if ($request->hasFile('primary_image')){
-                MediaFileService::publicUpload($request->primary_image , $product->id , 'products' , true );
+                MediaFileService::publicUpload($request->primary_image , $product , 'products' , true );
             }
+
             //other images
             if ($request->hasFile('images') ){
                 $images = $request->images;
                 foreach ($images as $image){
-                    MediaFileService::publicUpload($image , $product->id , 'products' , false );
+                    MediaFileService::publicUpload($image , $product , 'products' , false );
                 }
             }
 
@@ -103,10 +105,44 @@ class ProductController extends Controller
             'delivery_amount_per_product' => $request->delivery_amount_per_product,
         ]);
 
+        //upload file
+        //primary
+        if ($request->hasFile('primary_image')){
+            if ($primary = $product->images()->where('is_primary' , 1)->first()){
+            MediaFileService::delete($primary);
+            }
+            MediaFileService::publicUpload($request->primary_image , $product , 'products' , true );
+        }
+
+        //other images
+        if ($request->hasFile('images') ){
+            foreach ($product->images() as $image){
+                MediaFileService::delete($image);
+            }
+            $images = $request->images;
+            foreach ($images as $image){
+                MediaFileService::publicUpload($image , $product , 'products' , false );
+            }
+        }
+
         //sync products
         $product->tags()->sync($request->tag_ids);
 
         return redirect()->route('panel.products.index') ;
+    }
+
+    public function destroy(Product  $product)
+    {
+        MediaFileService::delete($product->images()->where('is_primary' , 1)->firstOr());
+        foreach ($product->images() as $image){
+            MediaFileService::delete($image);
+        }
+        $product->images()->delete();
+        $product->tags()->delete();
+        $product->delete();
+
+        return response()->json([
+            'message' => 'محصول ' . $product->name.' با موفقیت حذف شد.'        ]);
     }
 
     public function uploadImagesView( Product $product)

@@ -22,7 +22,6 @@ class ProductFactory extends Factory
             'category_id' => Category::factory(),
             'price' => $this->faker->numerify('####'),
             'quantity' => $this->faker->numerify('#'),
-            'slug' => $this->faker->slug,
             'description' => $this->faker->paragraph,
             'status' => new Sequence(1, 0),
             'delivery_amount' => $this->faker->numerify('###'),
