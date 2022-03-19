@@ -1,71 +1,48 @@
-<div class="block banners-with-pad">
+<div class="banner-area pt-100 pb-65">
     <div class="container">
         <div class="row">
-            <div class="col-md-7">
-                <a href="#" class="banner-wrap">
-                    <div class="banner style-17 autosize-text image-hover-scale" data-fontratio="4.6">
-                        <img src="/front/assets/images/banners/banner-17.jpg" alt="Banner">
-                        <div class="banner-caption vertb horl">
-                            <div class="vert-wrapper">
-                                <div class="vert">
-                                    <div class="text-1">مجموعه مد</div>
-                                    <div class="text-2 text-hoverslide" data-hcolor="#ffffff"><span><span
-                                                class="text">زیر شلواری</span><span
-                                                class="hoverbg"></span></span>
-                                    </div>
-                                    <div class = "text-3"> برای گرفتن یک مثال پیش پا افتاده ، کدام یک از ما هرگز دست به کار نمی شویم
-                                        <br> ورزش بدنی
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="single-banner mb-30 scroll-zoom">
+                    <a href="product-details.html"><img class="animated" src="/front-ui/assets/img/banner/banner-6.png" alt="" /></a>
+                    <div class="banner-content-2 banner-position-5">
+                        <h4>زنانه</h4>
                     </div>
-                </a>
-                <a href="#bannerLink" class="banner-wrap">
-                    <div class="banner style-18 autosize-text image-hover-scale" data-fontratio="4.6">
-                        <img src="/front/assets/images/banners/banner-18.jpg" alt="Banner">
-                        <div class="banner-caption vertl horl">
-                            <div class="vert-wrapper">
-                                <div class="vert">
-                                    <div class = "text-1"> بزرگتر </div>
-                                    <div class = "text-2">BRA عالی </div>
-                                    <div class = "banner-btn text-hoverslide" data-hcolor = "# fff"> <span> <span
-                                                class = "text"> پیشنهادات ویژه </span> <span class = "hoverbg"> </span> </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                </div>
             </div>
-            <div class="col-md-5">
-                <a href="#bannerLink" class="banner-wrap">
-                    <div class="banner style-19 autosize-text image-hover-scale" data-fontratio="4.6">
-                        <img src="/front/assets/images/banners/banner-19.jpg" alt="Banner">
-                        <div class="banner-caption vertb horl">
-                            <div class="vert-wrapper">
-                                <div class="vert">
-                                    <div class = "text-1"> شب مد </div>
-                                    <div class = "text-2"> وارد شد </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="single-banner mb-30 scroll-zoom">
+                    <a href="product-details.html"><img class="animated" src="/front-ui/assets/img/banner/banner-7.png" alt="" /></a>
+                    <div class="banner-content-2 banner-position-5">
+                        <h4>جین</h4>
                     </div>
-                </a>
-                <a href="#bannerLink" class="banner-wrap">
-                    <div class="banner style-20 autosize-text image-hover-scale" data-fontratio="4.6">
-                        <img src="/front/assets/images/banners/banner-20.jpg" alt="Banner">
-                        <div class="banner-caption vertb horr">
-                            <div class="vert-wrapper">
-                                <div class="vert">
-                                    <div class = "text-1"> همیشه به روز <span class = "text-corner"> </span>
-                                    </div>
-                                    <div class = "text-2"> پوشاک شهری </div>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="single-banner mb-30 scroll-zoom">
+                    <a href="product-details.html"><img class="animated" src="/front-ui/assets/img/banner/banner-8.png" alt="" /></a>
+                    <div class="banner-content-2 banner-position-5">
+                        <h4>مردانه</h4>
                     </div>
-                </a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="single-banner mb-30 scroll-zoom">
+                    <a href="product-details.html"><img class="animated" src="/front-ui/assets/img/banner/banner-9.png" alt="" /></a>
+                    <div class="banner-content banner-position-6 text-right">
+                        <h3>لورم ایپسوم</h3>
+                        <h2>لورم ایپسوم <br />متن</h2>
+                        <a href="product-details.html">فروشگاه</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="single-banner mb-30 text-center scroll-zoom">
+                    <a href="product-details.html"><img class="animated" src="/front-ui/assets/img/banner/banner-10.png" alt="" /></a>
+                    <div class="banner-content-3 banner-position-7">
+                        <h2>لورم ایپسوم متن ساختگی</h2>
+                        <a href="product-details.html">فروشگاه</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
