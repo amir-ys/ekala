@@ -1,4 +1,4 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="quick-view-modal-{{ $product->id }}" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,14 +10,14 @@
                 <div class="row">
                     <div class="col-md-7 col-sm-12 col-xs-12" style="direction: rtl;">
                         <div class="product-details-content quickview-content">
-                            <h2 class="text-right mb-4">لورم ایپسوم</h2>
+                            <h2 class="text-right mb-4">{{ $product->name }}</h2>
                             <div class="product-details-price">
                     <span>
                       50,000
                       تومان
                     </span>
                                 <span class="old">
-                      75,000
+                      {{ number_format($product->price) }}
                       تومان
                     </span>
                             </div>
@@ -32,29 +32,29 @@
                                 <span>3 دیدگاه</span>
                             </div>
                             <p class="text-right">
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
-                                و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                               {{ $product->description }}
                             </p>
                             <div class="pro-details-list text-right">
                                 <ul class="text-right">
-                                    <li>- لورم ایپسوم</li>
-                                    <li>- لورم ایپسوم متن ساختگی</li>
-                                    <li>- لورم ایپسوم متن</li>
+                                    @foreach($product->attributes()->withPivot('value')->get() as $productAttribute)
+
+                                    <li>- {{ $productAttribute->name  }} : {{ $productAttribute->pivot->value }}</li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="pro-details-size-color text-right">
-                                <div class="pro-details-size">
-                                    <span>سایز</span>
-                                    <div class="pro-details-size-content">
-                                        <ul>
-                                            <li><a href="#">s</a></li>
-                                            <li><a href="#">m</a></li>
-                                            <li><a href="#">l</a></li>
-                                            <li><a href="#">xl</a></li>
-                                            <li><a href="#">xxl</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+{{--                                <div class="pro-details-size">--}}
+{{--                                    <span>سایز</span>--}}
+{{--                                    <div class="pro-details-size-content">--}}
+{{--                                        <ul>--}}
+{{--                                            <li><a href="#">s</a></li>--}}
+{{--                                            <li><a href="#">m</a></li>--}}
+{{--                                            <li><a href="#">l</a></li>--}}
+{{--                                            <li><a href="#">xl</a></li>--}}
+{{--                                            <li><a href="#">xxl</a></li>--}}
+{{--                                        </ul>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                             </div>
                             <div class="pro-details-quality">
@@ -74,16 +74,20 @@
                             <div class="pro-details-meta">
                                 <span>دسته بندی :</span>
                                 <ul>
-                                    <li><a href="#">مردانه,</a></li>
-                                    <li><a href="#">پالتو</a></li>
+                                    <li><a href="#">{{ $product->category->name }}</a></li>
+                                    @if($product->categories)
+                                        @foreach($product->categories as $childCategory)
+                                            <li><a href="#">{{ $childCategory->name }}</a></li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                             <div class="pro-details-meta">
                                 <span>تگ ها :</span>
                                 <ul>
-                                    <li><a href="#">لباس, </a></li>
-                                    <li><a href="#">Furniture,</a></li>
-                                    <li><a href="#">Electronic</a></li>
+                                    @foreach($product->tags as $tag)
+                                        <li><a href="#">{{ $tag->name }}{{ $loop->last ?  '' : ',' }} </a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

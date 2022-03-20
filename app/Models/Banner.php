@@ -13,6 +13,16 @@ class Banner extends Model
    const STATUS_ACTIVE = 1;
    const STATUS_DEACTIVE = 0;
 
+   const TYPE_SLIDER = 'slider' ;
+   const TYPE_TOP_INDEX=  'top-index' ;
+   const TYPE_BOTTOM_INDEX = 'bottom-index' ;
+
+   public static $types = [
+     self::TYPE_SLIDER  ,
+     self::TYPE_BOTTOM_INDEX ,
+     self::TYPE_TOP_INDEX,
+   ];
+
    public static $statuses = [
      'فعال' => self::STATUS_ACTIVE ,
      'غبر فعال' => self::STATUS_DEACTIVE ,

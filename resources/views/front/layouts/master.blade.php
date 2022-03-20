@@ -12,9 +12,7 @@
 
 @include('front.layouts.footer')
 
-<!-- Modal -->
-@include('front.layouts.quick-view-modal')
-<!-- Modal end -->
+
 </div>
 
 <!-- All JS is here

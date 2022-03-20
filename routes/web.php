@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Panel\Banner\BannerController;
 use App\Http\Controllers\Panel\Brand\BrandController;
@@ -19,9 +20,13 @@ Route::get('/panel/dashboard', function () {
 })->name('panel.dashboard')->middleware('auth');
 
 // Front
-//Route::group([],  function (){
+Route::group([],  function (){
     Route::get('/' , [FrontController::class , 'index']);
-//});
+    Route::get('/categories/{category:slug}' ,[FrontController::class , 'showCategory'])->name('front.show-category');
+    Route::get('/product/{product:slug}' ,[FrontController::class , 'productDetails'])->name('products.details');
+    Route::get('/auth/google/redirect' ,[GoogleAuthController::class , 'redirect'])->name('auth.google.redirect');
+    Route::get('/auth/google/callback' ,[GoogleAuthController::class , 'callback'])->name('auth.google.callback');
+});
 
 //Panel
 Route::group(
@@ -42,7 +47,6 @@ Route::group(
     Route::get('products/{product}/images' , [ProductController::class , 'uploadImagesView'] )->name('products.uploadImages.view');
 
     //product image
-    Route::get('products/{image}/display-image' , [ProductController::class , 'displayImage'] )->name('products.displayImage');
     Route::delete('products/image/{image}/delete' , [ProductController::class , 'deleteImage'] )->name('products.image.delete');
     Route::delete('products/{product}/image/deleteAll' , [ProductController::class , 'deleteAllImage'] )->name('products.image.deleteAll');
     Route::post('products/{product}/image/upload' , [ProductController::class , 'uploadImage'] )->name('products.image.upload');
@@ -55,5 +59,8 @@ Route::group(
     Route::resource('banners' , BannerController::class);
 
     });
+
+Route::get('products/{image}/display-image' , [ProductController::class , 'displayImage'] )->name('panel.products.displayImage');
+
 
 require __DIR__.'/auth.php';

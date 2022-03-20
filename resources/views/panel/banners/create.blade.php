@@ -1,5 +1,5 @@
 @extends('panel.layouts.master')
-@section('title') ساخت بنرها  @endsection
+@section('title') ساخت بنر @endsection
 @section('css')
     <link href="{{ URL::asset('/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
@@ -55,9 +55,15 @@
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label>نوع</label>
-                                        <input type="text" class="form-control" name="type"
-                                               placeholder="نوع"
-                                               value="{{ old('type') }}">
+                                        <select name="type" class="form-control" id="banner-type">
+                                            <option value> نوع بنر را انتخاب کنید</option>
+                                            @foreach(\App\Models\Banner::$types as $type)
+                                            <option value="{{ $type }}"
+                                            @if(old('type') == $type) selected @endif
+                                            > {{ $type }}
+                                            </option>
+                                            @endforeach
+                                        </select>
                                         <x-validation-error field="type"/>
                                     </div>
 

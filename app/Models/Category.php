@@ -34,6 +34,11 @@ class Category extends Model
         return $this->hasMany(Category::class , 'parent_id') ;
     }
 
+    public function path()
+    {
+        return route('panel.products.show' , $this->slug);
+    }
+
     public function StatusName($status = null)
     {
         if (is_null($status)) $status = $this->status ;
