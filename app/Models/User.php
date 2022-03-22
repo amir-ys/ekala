@@ -25,6 +25,9 @@ class User extends Authenticatable
         'email',
         'password',
         'email_verified_at' ,
+        'otp' ,
+        'login_token' ,
+        'mobile' ,
     ];
 
     const STATUS_ACTIVE = 1;

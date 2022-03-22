@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\Auth\OTPController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Panel\Banner\BannerController;
 use App\Http\Controllers\Panel\Brand\BrandController;
@@ -19,13 +20,25 @@ Route::get('/panel/dashboard', function () {
     return view('panel.dashboard');
 })->name('panel.dashboard')->middleware('auth');
 
+Route::get('test' , function (){
+
+    $user = \App\Models\User::find(2);
+    $user->notify(NEW \App\Notifications\OTPSms('12345'));
+
+});
+
 // Front
 Route::group([],  function (){
-    Route::get('/' , [FrontController::class , 'index']);
+    Route::get('/' , [FrontController::class , 'index'])->name('home');
     Route::get('/categories/{category:slug}' ,[FrontController::class , 'showCategory'])->name('front.show-category');
     Route::get('/product/{product:slug}' ,[FrontController::class , 'productDetails'])->name('products.details');
     Route::get('/auth/google/redirect' ,[GoogleAuthController::class , 'redirect'])->name('auth.google.redirect');
     Route::get('/auth/google/callback' ,[GoogleAuthController::class , 'callback'])->name('auth.google.callback');
+
+    //OTP login
+    Route::get('/login-otp' , [OTPController::class , 'showLoginView'])->name('otp.login');
+    Route::post('/login-otp' , [OTPController::class , 'loginByOTP'])->name('otp.login');
+    Route::post('/otp-check' , [OTPController::class , 'otpCheck'])->name('otp.check');
 });
 
 //Panel

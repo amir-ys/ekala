@@ -10,3 +10,4 @@
 <script src="/front-ui/assets/js/ajax-mail.js"></script>
 <!-- Main JS -->
 <script src="/front-ui/assets/js/main.js"></script>
+@yield('script')
