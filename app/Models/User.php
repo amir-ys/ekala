@@ -67,4 +67,9 @@ class User extends Authenticatable
         if ($this->status == self::STATUS_ACTIVE) return 'success';
         if ($this->status == self::STATUS_DEACTIVE) return  'danger';
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

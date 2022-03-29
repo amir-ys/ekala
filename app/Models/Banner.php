@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 class Banner extends Model
 {
@@ -36,6 +37,11 @@ class Banner extends Model
     public function image()
     {
         return $this->morphOne(Media::class, 'mediable');
+   }
+
+    public function scopeActive(Builder $query)
+    {
+        $query->where('type' , self::STATUS_ACTIVE);
    }
 
 }

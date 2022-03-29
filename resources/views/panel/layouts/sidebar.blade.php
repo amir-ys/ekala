@@ -66,6 +66,10 @@
                             <a href="{{ route('panel.tags.index') }}"
                                key="t-vertical"> برچسب ها  </a>
                         </li>
+                        <li>
+                            <a href="{{ route('panel.comments.index') }}"
+                               key="t-vertical"> کامنت ها  </a>
+                        </li>
                     </ul>
                 </li>
 

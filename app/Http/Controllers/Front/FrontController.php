@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Product;
 
 class FrontController extends Controller
@@ -12,11 +13,11 @@ class FrontController extends Controller
     public function index()
     {
         $sliders = Banner::query()->where('type', Banner::TYPE_SLIDER)
-            ->where('status', Banner::STATUS_ACTIVE)->orderBy('priority')->get();
+            ->active()->orderBy('priority')->get();
         $topIndexBanners = Banner::query()->where('type', Banner::TYPE_TOP_INDEX)
-            ->where('status', Banner::STATUS_ACTIVE)->orderBy('priority')->get();
+            ->active()->orderBy('priority')->get();
         $bottomIndexBanners = Banner::query()->where('type', Banner::TYPE_BOTTOM_INDEX)
-            ->where('status', Banner::STATUS_ACTIVE)->orderBy('priority')->get();
+            ->active()->orderBy('priority')->get();
         $products = Product::query()->with(['category', 'tags'])->where('status', Product::STATUS_ACTIVE)
             ->take(4)->latest()->get();
         return view('front.index', compact('sliders', 'topIndexBanners', 'bottomIndexBanners', 'products' ));
@@ -30,6 +31,7 @@ class FrontController extends Controller
 
     public function productDetails(Product  $product)
     {
-        return view('front.product-details' , compact('product'));
+        $approvedComments = $product->comments()->with('user')->approved()->get();
+        return view('front.product-details' , compact('product' , 'approvedComments'));
     }
 }

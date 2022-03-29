@@ -3,11 +3,13 @@
 
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Auth\OTPController;
+use App\Http\Controllers\Front\CommentController as FrontCommentController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Panel\Banner\BannerController;
 use App\Http\Controllers\Panel\Brand\BrandController;
 use App\Http\Controllers\Panel\Product\AttributeController;
 use App\Http\Controllers\Panel\Product\CategoryController;
+use App\Http\Controllers\Panel\Product\CommentController;
 use App\Http\Controllers\Panel\Product\ProductController;
 use App\Http\Controllers\Panel\Product\TagController;
 use App\Http\Controllers\Panel\RolePermission\PermissionController;
@@ -35,6 +37,8 @@ Route::group([],  function (){
     Route::get('/auth/google/redirect' ,[GoogleAuthController::class , 'redirect'])->name('auth.google.redirect');
     Route::get('/auth/google/callback' ,[GoogleAuthController::class , 'callback'])->name('auth.google.callback');
 
+    Route::post('comments/{product}/store' , [FrontCommentController::class , 'store'])->name('comment.store')->middleware('auth');
+
     //OTP login
     Route::get('/login-otp' , [OTPController::class , 'showLoginView'])->name('otp.login');
     Route::post('/login-otp' , [OTPController::class , 'loginByOTP'])->name('otp.login');
@@ -55,6 +59,8 @@ Route::group(
     Route::resource('roles' , RoleController::class );
     Route::resource('tags' , TagController::class );
     Route::resource('products' , ProductController::class );
+    Route::resource('comments' , CommentController::class )->only('index' , 'destroy');
+    Route::post('comments/{comment}/change-status' , [CommentController::class , 'changeStatus'] )->name('comments.changeStatus');
 
     //products
     Route::get('products/{product}/images' , [ProductController::class , 'uploadImagesView'] )->name('products.uploadImages.view');
