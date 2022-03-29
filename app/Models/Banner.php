@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder as BuilderAlias;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
@@ -39,9 +40,9 @@ class Banner extends Model
         return $this->morphOne(Media::class, 'mediable');
    }
 
-    public function scopeActive(Builder $query)
+    public function scopeActive(BuilderAlias $query): BuilderAlias
     {
-        $query->where('type' , self::STATUS_ACTIVE);
+        return $query->where('status' , self::STATUS_ACTIVE);
    }
 
 }

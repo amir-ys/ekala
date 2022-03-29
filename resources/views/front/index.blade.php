@@ -41,9 +41,31 @@
                             </span></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"><i class="sli sli-heart"></i><span
-                                                            class="ht-product-action-tooltip"> افزودن به
-                              علاقه مندی ها </span></a>
+
+                                                  @auth()
+                                                        @if($product->wishes()->where('user_id' , auth()->id() )->first())
+                                                            <form action="{{ route('products.wish.delete' , $product->id) }}" method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button type="submit">
+                                                                    <i class="sli sli-heart" style="background-color:red;"></i>
+                                                                    <span class="ht-product-action-tooltip"> این محصول در لیست علاقه مندی شماست </span>
+                                                                </button>
+                                                            </form>
+                                                        @else
+                                                      <form action="{{ route('products.wish.store' , $product->id) }}" method="post">
+                                                          @csrf
+                                                          @method('post')
+                                                          <button type="submit">
+                                                              <i class="sli sli-heart" style="background-color:red;"></i>
+                                                              <span class="ht-product-action-tooltip"> افزودن به علاقه مندی ها </span>
+                                                          </button>
+                                                      </form>
+                                                        @endif
+                                                  @else
+                                                      <a href="{{ route('login') }}"><i class="sli sli-heart"></i><span
+                                                              class="ht-product-action-tooltip">  وارد سایت شوید </span></a>
+                                                  @endauth
                                                 </li>
                                                 <li>
                                                     <a href="#"><i class="sli sli-refresh"></i><span

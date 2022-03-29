@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Auth\OTPController;
 use App\Http\Controllers\Front\CommentController as FrontCommentController;
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\ProductController as FrontProductController;
 use App\Http\Controllers\Panel\Banner\BannerController;
 use App\Http\Controllers\Panel\Brand\BrandController;
 use App\Http\Controllers\Panel\Product\AttributeController;
@@ -43,6 +44,10 @@ Route::group([],  function (){
     Route::get('/login-otp' , [OTPController::class , 'showLoginView'])->name('otp.login');
     Route::post('/login-otp' , [OTPController::class , 'loginByOTP'])->name('otp.login');
     Route::post('/otp-check' , [OTPController::class , 'otpCheck'])->name('otp.check');
+
+    Route::post('/add-to-wish/{product}' , [\App\Http\Controllers\Front\WishController::class , 'add'])->name('products.wish.store');
+    Route::delete('/delete-from-wish/{product}' , [\App\Http\Controllers\Front\WishController::class , 'delete'])->name('products.wish.delete');
+
 });
 
 //Panel
