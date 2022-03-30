@@ -4,6 +4,7 @@
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Auth\OTPController;
 use App\Http\Controllers\Front\CommentController as FrontCommentController;
+use App\Http\Controllers\Front\CompareController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\ProductController as FrontProductController;
 use App\Http\Controllers\Panel\Banner\BannerController;
@@ -48,6 +49,9 @@ Route::group([],  function (){
     Route::post('/add-to-wish/{product}' , [\App\Http\Controllers\Front\WishController::class , 'add'])->name('products.wish.store');
     Route::delete('/delete-from-wish/{product}' , [\App\Http\Controllers\Front\WishController::class , 'delete'])->name('products.wish.delete');
 
+    Route::get('compare' , [CompareController::class , 'index'])->name('products.compare.index');
+    Route::get('compare/{product}/add' , [CompareController::class , 'add'])->name('products.compare.add');
+    Route::get('compare/{product}/delete' , [CompareController::class , 'delete'])->name('products.compare.delete');
 });
 
 //Panel
