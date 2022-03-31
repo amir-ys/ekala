@@ -28,7 +28,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         View::composer('front.layouts.header' , function ($view){
-           $view->with([ 'categories' => Category::query()->whereNull('parent_id')->get() ]);
+           $view->with([
+               'categories' => Category::query()->whereNull('parent_id')->get() ,
+               'carts' => \Cart::getContent(),
+               ]);
         });
     }
 }

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-xl-2 col-lg-2">
                     <div class="logo pt-40">
-                        <a href="index.html">
+                        <a href="/">
                             <h3 class="font-weight-bold">WebProg.ir</h3>
                         </a>
                     </div>
@@ -21,7 +21,7 @@
                                 <li><a href="contact-us.html"> تماس با ما </a></li>
 
                                 <li class="angle-shape">
-                                    <a href="shop.html"> فروشگاه </a>
+                                    <a href="/"> فروشگاه </a>
 
                                     <ul class="mega-menu">
                                         @foreach($categories as $category)
@@ -43,7 +43,7 @@
                                 </li>
 
                                 <li class="angle-shape">
-                                    <a href="index.html"> صفحه اصلی </a>
+                                    <a href="/"> صفحه اصلی </a>
                                 </li>
                             </ul>
                         </nav>
@@ -59,12 +59,12 @@
                             <button class="icon-cart-active">
                     <span class="icon-cart">
                       <i class="sli sli-bag"></i>
-                      <span class="count-style">02</span>
+                      <span class="count-style">{{ $carts->count() }}</span>
                     </span>
 
 
                                 <span class="cart-price">
-                      500,000
+                        {{ number_format(\Cart::getTotal()) }}
                     </span>
                                 <span>تومان</span>
                             </button>
@@ -74,31 +74,26 @@
                                     <h4>سبد خرید</h4>
                                 </div>
                                 <ul>
+                                    @foreach($carts as $cartItem)
                                     <li class="single-shopping-cart">
                                         <div class="shopping-cart-title">
-                                            <h4><a href="#"> لورم ایپسوم </a></h4>
-                                            <span>1 x 90.00</span>
+                                            <h4><a href="#"> {{ $cartItem->name }} </a></h4>
+                                            <span>{{ $cartItem->quantity }} x {{ number_format($cartItem->price) }}</span>
                                         </div>
 
                                         <div class="shopping-cart-img">
-                                            <a href="#"><img alt="" src="/front-ui/assets/img/cart/cart-1.svg" /></a>
+                                            <a href="#"><img alt="" src="{{ route('panel.products.displayImage' ,
+                                $cartItem->associatedModel->images()->where('is_primary' , 1)->first()->files) }}" /></a>
                                             <div class="item-close">
-                                                <a href="#"><i class="sli sli-close"></i></a>
+                                                <form action="{{ route('front.cart.remove' , $cartItem->id) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                <button type="submit"><i class="sli sli-close"></i></button>
+                                                </form>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="single-shopping-cart">
-                                        <div class="shopping-cart-title">
-                                            <h4><a href="#"> لورم ایپسوم </a></h4>
-                                            <span>1 x 9,000</span>
-                                        </div>
-                                        <div class="shopping-cart-img">
-                                            <a href="#"><img alt="" src="/front-ui/assets/img/cart/cart-2.svg" /></a>
-                                            <div class="item-close">
-                                                <a href="#"><i class="sli sli-close"></i></a>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    @endforeach
                                 </ul>
                                 <div class="shopping-cart-bottom">
                                     <div class="shopping-cart-total d-flex justify-content-between align-items-center"
@@ -107,14 +102,14 @@
                                             جمع کل :
                                         </h4>
                                         <span class="shop-total">
-                          25,000 تومان
+                          {{ number_format(\Cart::getTotal()) }} تومان
                         </span>
                                     </div>
                                     <div class="shopping-cart-btn btn-hover text-center">
                                         <a class="default-btn" href="checkout.html">
                                             ثبت سفارش
                                         </a>
-                                        <a class="default-btn" href="cart-page.html">
+                                        <a class="default-btn" href="{{ route('front.cart.index') }}">
                                             سبد خرید
                                         </a>
                                     </div>

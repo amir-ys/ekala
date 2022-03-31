@@ -69,14 +69,19 @@
                                                 </li>
                                                 <li>
                                                     <a href="{{ route('products.compare.add' , $product->id) }}"><i class="sli sli-refresh"></i><span
-                                                            class="ht-product-action-tooltip"> مقایسه
-                            </span></a>
+                                                            class="ht-product-action-tooltip"> مقایسه</span></a>
                                                 </li>
-                                                <li>
-                                                    <a href="#"><i class="sli sli-bag"></i><span
-                                                            class="ht-product-action-tooltip"> افزودن به سبد
-                              خرید </span></a>
-                                                </li>
+                                               @if($product->quantity > 0)
+                                                    <form action="{{ route('front.cart.add') }}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                        <input type="hidden" name="qty" value="1">
+                                                    <li>
+                                                        <button type="submit" ><i class="sli sli-bag"></i><span
+                                                                class="ht-product-action-tooltip"> افزودن به سبد خرید </span></button>
+                                                    </li>
+                                                    </form>
+                                                @endif
                                             </ul>
                                         </div>
                                     </div>
@@ -91,7 +96,7 @@
                                            @if($product->quantity > 0 )
                                                 <div class="ht-product-price">
                         <span class="new">
-                                                      75,000
+                             {{ number_format($product->price) }}
                           تومان
                         </span>
                                                     <span class="old">
