@@ -5,7 +5,6 @@
             <h3 class="cart-page-title"> سبد خرید شما </h3>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-
                     @if($carts->count() > 0)
                         <div class="table-content table-responsive cart-table-content">
                             <table>
@@ -83,8 +82,10 @@
                                     </div>
                                     <div class="discount-code">
                                         <p> لورم ایپسوم متن ساختگی با تولید سادگی </p>
-                                        <form>
-                                            <input type="text" required="" name="name">
+                                        <form  action="{{ route('front.coupon.check') }}" method="get">
+                                            @csrf
+                                            <input type="text" name="code" value="{{ old('code') }}" >
+                                            <x-validation-error  field="code" />
                                             <button class="cart-btn-2" type="submit"> ثبت</button>
                                         </form>
                                     </div>
@@ -117,10 +118,24 @@
                                         </h5>
 
                                     </div>
+                                    <div class="discount-code">
+                                        <h5>
+                                            مبلغ کد تخفیف :
+                                            <span>
+                                                @if(session()->has('coupon'))
+                                                    {{  number_format($couponAmount = session()->get('coupon')) }}
+                                                @else
+                                                    {{ $couponAmount = 0 }}
+                                                @endif
+                                            </span>
+                                        </h5>
+
+                                    </div>
+                                    <hr>
                                     <h4 class="grand-totall-title">
                                         جمع کل:
                                         <span>
-                                            {{ $total +  $deliveryAmount  }}
+                                            {{ ( $total +  $deliveryAmount) - $couponAmount   }}
                                             تومان
                                         </span>
                                     </h4>

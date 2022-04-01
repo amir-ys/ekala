@@ -6,10 +6,11 @@ use App\Http\Controllers\Auth\OTPController;
 use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\CommentController as FrontCommentController;
 use App\Http\Controllers\Front\CompareController;
+use App\Http\Controllers\Front\CouponController as FrontCouponController;
 use App\Http\Controllers\Front\FrontController;
-use App\Http\Controllers\Front\ProductController as FrontProductController;
 use App\Http\Controllers\Panel\Banner\BannerController;
 use App\Http\Controllers\Panel\Brand\BrandController;
+use App\Http\Controllers\Panel\CouponController;
 use App\Http\Controllers\Panel\Product\AttributeController;
 use App\Http\Controllers\Panel\Product\CategoryController;
 use App\Http\Controllers\Panel\Product\CommentController;
@@ -58,6 +59,8 @@ Route::group([],  function (){
     Route::post('cart/add' , [CartController::class , 'add'])->name('front.cart.add');
     Route::delete('cart/{id}/remove' , [CartController::class , 'remove'])->name('front.cart.remove');
     Route::delete('cart/remove' , [CartController::class , 'clear'])->name('front.cart.clear');
+
+    Route::get('coupon/check' , [FrontCouponController::class , 'checkCoupon'])->name('front.coupon.check');
 });
 
 //Panel
@@ -91,6 +94,7 @@ Route::group(
 
     //banner
     Route::resource('banners' , BannerController::class);
+    Route::resource('coupons' , CouponController::class);
 
     });
 

@@ -80,6 +80,14 @@
                     </a>
                 </li>
 
+
+                <li>
+                    <a href="{{ route('panel.coupons.index') }}" class="waves-effect">
+                        <i class="bx bx-slider"></i>
+                        <span key="t-banner">کد تخفیف </span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->
