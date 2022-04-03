@@ -8,6 +8,8 @@ use App\Http\Controllers\Front\CommentController as FrontCommentController;
 use App\Http\Controllers\Front\CompareController;
 use App\Http\Controllers\Front\CouponController as FrontCouponController;
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\OrderController;
+use App\Http\Controllers\Front\TransactionController;
 use App\Http\Controllers\Panel\Banner\BannerController;
 use App\Http\Controllers\Panel\Brand\BrandController;
 use App\Http\Controllers\Panel\CouponController;
@@ -61,6 +63,10 @@ Route::group([],  function (){
     Route::delete('cart/remove' , [CartController::class , 'clear'])->name('front.cart.clear');
 
     Route::get('coupon/check' , [FrontCouponController::class , 'checkCoupon'])->name('front.coupon.check');
+
+    Route::get('/checkout' , [OrderController::class , 'checkout'])->name('front.orders.checkout');
+    Route::post('/pay' , [OrderController::class , 'pay'])->name('front.orders.pay')->middleware('auth');
+    Route::get('/payment/callback' , [TransactionController::class , 'callback'])->name('front.transaction.callback')->middleware('auth');
 });
 
 //Panel

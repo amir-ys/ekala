@@ -17,17 +17,17 @@ class CartController extends Controller
     public function add(CartRequest $request)
     {
         $product = Product::query()->findOrFail($request->product_id);
-       if (! \Cart::get($product->id)){
-           \Cart::add([
-               'id' => $product->id,
-               'name' => $product->name,
-               'price' => $product->price,
-               'quantity' => $request->qty,
-               'attributes' => $product->attributes()->withPivot('value')->get()->toArray(),
-               'associatedModel' => $product
-           ]);
-       }
-       return back();
+        if (!\Cart::get($product->id)) {
+            \Cart::add([
+                'id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => $request->qty,
+                'attributes' => $product->attributes()->withPivot('value')->get()->toArray(),
+                'associatedModel' => $product
+            ]);
+        }
+        return back();
     }
 
     public function remove($itemId)
@@ -42,4 +42,14 @@ class CartController extends Controller
         return back();
     }
 
+    public static function getDeliveryAmount()
+    {
+        $deliveryAmount = 0;
+        if (! \Cart::isEmpty()) {
+            foreach (\Cart::getContent() as $cartItem) {
+                $deliveryAmount += $cartItem->associatedModel->delivery_amount;
+            }
+            return $deliveryAmount;
+        }
+    }
 }

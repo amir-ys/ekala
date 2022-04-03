@@ -108,11 +108,8 @@
                                         <h5>
                                             هزینه ارسال :
                                             <span>
-                                              @php($deliveryAmount = 0)
-                                                @foreach($carts as $cartItem)
-                                                    @php( $deliveryAmount += $cartItem->associatedModel->delivery_amount )
-                                                @endforeach
-                                                {{ $deliveryAmount }}
+
+                                                {{ number_format(\App\Http\Controllers\Front\CartController::getDeliveryAmount()) }}
                                             تومان
                                             </span>
                                         </h5>
@@ -123,7 +120,7 @@
                                             مبلغ کد تخفیف :
                                             <span>
                                                 @if(session()->has('coupon'))
-                                                    {{  number_format($couponAmount = session()->get('coupon')) }}
+                                                    {{  number_format($couponAmount = session()->get('coupon')['amount'] ) }}
                                                 @else
                                                     {{ $couponAmount = 0 }}
                                                 @endif
@@ -135,11 +132,11 @@
                                     <h4 class="grand-totall-title">
                                         جمع کل:
                                         <span>
-                                            {{ ( $total +  $deliveryAmount) - $couponAmount   }}
+                                            {{ ( $total +  \App\Http\Controllers\Front\CartController::getDeliveryAmount() ) - $couponAmount   }}
                                             تومان
                                         </span>
                                     </h4>
-                                    <a href="./checkout.html"> ادامه فرآیند خرید </a>
+                                    <a href="{{ route('front.orders.checkout') }}"> ادامه فرآیند خرید </a>
                                 </div>
                             </div>
                         </div>

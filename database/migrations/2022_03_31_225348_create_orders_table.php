@@ -24,7 +24,6 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('coupon_amount')->default(0);
             $table->bigInteger('paying_amount');
             $table->string('payment_type');
-            $table->tinyInteger('payment_status');
             $table->timestamps();
         });
     }

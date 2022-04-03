@@ -6,10 +6,15 @@
 @section('script')
     <script src="{{ URL::asset('/assets/libs/select2/select2.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/pages/form-advanced.init.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
     <script>
         $('#tag-select2').select2({
             placeholder: "انتخاب تگ",
         })
+        ClassicEditor.create( document.querySelector( '#ckeditor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
 
     </script>
 @endsection
@@ -101,9 +106,9 @@
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-12 mb-3">
+                                    <div class="col-md-12 mb-3" >
                                         <label>توضیحات</label>
-                                        <textarea class="form-control" name="description"> {{ old('description') }}</textarea>
+                                        <textarea id="ckeditor" class="form-control" name="description"> {{ old('description') }}</textarea>
                                     <x-validation-error field="description"/>
                                     </div>
                                 </div>
