@@ -41,8 +41,8 @@ class TransactionController extends Controller
 
     public function getTokenFromRequest(Request $request): mixed
     {
-         cache()->get('payment_method') == Transaction::PAYMENT_METHOD_ZARINPAL  ?:  $token =  $request->Authority;
-         cache()->get('payment_method') == Transaction::PAYMENT_METHOD_PAY  ?:  $token =  $request->Authority;
-         return  $token;
+        if (cache()->get('payment_method') == Transaction::PAYMENT_METHOD_ZARINPAL) return $request->Authority;
+        if (cache()->get('payment_method') == Transaction::PAYMENT_METHOD_PAY) return $request->token;
+        if (cache()->get('payment_method') == Transaction::PAYMENT_METHOD_ZIBAL) return $request->trackId ;;
     }
 }

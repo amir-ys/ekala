@@ -11,7 +11,7 @@ class PayAdaptor
     {
         $this->client = new Pay();
         $callbackUrl = route('front.transaction.callback');
-        $result  = $this->client->request('test' , $amount , $callbackUrl , '' , '' ,$description  );
+        $result  = $this->client->request(config('payment_method.pay.merchant') , $amount , $callbackUrl , '' , '' ,$description  );
         if (isset($result["status"]) && $result["status"] == 1) {
             $this->url = $result['startPay'];
             return $result['token'];
@@ -25,9 +25,9 @@ class PayAdaptor
 
     public function verify()
     {
-        $api = 'test';
+
         $this->client = new Pay();
-        $result = $this->client->verify($api);
+        $result = $this->client->verify(config('payment_method.pay.merchant'));
         if(isset($result->status)){
             if($result->status == 1){
                 return  $result->transId;

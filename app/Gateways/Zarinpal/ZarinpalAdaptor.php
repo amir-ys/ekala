@@ -15,7 +15,7 @@ class ZarinpalAdaptor implements GatewayContract
     {
         $this->client = new Zarinpal();
         $callback = route('front.transaction.callback');
-        $result = $this->client->request("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", $amount, $description,
+        $result = $this->client->request(config('payment_method.zarinpal.merchant'), $amount, $description,
             '', '', $callback, true);
         if (isset($result["Status"]) && $result["Status"] == 100) {
             $this->url = $result['StartPay'];
@@ -31,7 +31,7 @@ class ZarinpalAdaptor implements GatewayContract
     public function verify($request , $amount)
     {
         $this->client = new Zarinpal();
-        $result = $this->client->verify("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",$amount, true);
+        $result = $this->client->verify(config('payment_method.zarinpal.merchant'),$amount, true);
 
         if (isset($result["Status"]) && $result["Status"] == 100) {
             return $result["RefID"];

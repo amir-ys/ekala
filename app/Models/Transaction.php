@@ -12,6 +12,7 @@ class Transaction extends Model
 
    const PAYMENT_METHOD_ZARINPAL = 'zarinpal' ;
    const PAYMENT_METHOD_PAY = 'pay' ;
+   const PAYMENT_METHOD_ZIBAL = 'zibal' ;
 
 
     const STATUS_PENDING = 0;
