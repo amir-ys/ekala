@@ -8,6 +8,6 @@ return [
     ] ,
     'pay' => [
         'name' => 'درگاه پرداخت پی' ,
-        'class' => '' ,
+        'class' => \App\Gateways\Pay\PayAdaptor::class ,
     ] ,
 ];

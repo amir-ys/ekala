@@ -25,7 +25,8 @@ class OrderController extends Controller
             return back();
         }
        $amounts =  $this->getAmount();
-         PaymentService::generate($request->payment_method , $amounts);
+        $this->savePaymentMethodInCache($request);
+        PaymentService::generate($request->payment_method , $amounts);
         $gateway = resolve(Gateway::class);
         $gateway->redirect();
     }
@@ -100,5 +101,15 @@ class OrderController extends Controller
             return $couponAmount;
         }
        return  [ 'coupon' => $coupon , 'amount' =>  CouponController::generateCouponAmount($coupon ,$code) ];
+    }
+
+    /**
+     * @param PayRequest $request
+     * @return void
+     * @throws \Exception
+     */
+    public function savePaymentMethodInCache(PayRequest $request): void
+    {
+        cache()->put('payment_method', $request->payment_method);
     }
 }

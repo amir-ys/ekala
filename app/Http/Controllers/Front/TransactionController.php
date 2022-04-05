@@ -13,14 +13,14 @@ class TransactionController extends Controller
 {
     public function callback(Request $request)
     {
+        $token = $this->getTokenFromRequest($request);
         $gateway = resolve(Gateway::class);
-        $transaction = Transaction::query()->where('token' , $request->Authority)->first();
+        $transaction = Transaction::query()->where('token' , $token)->first();
         $result = $gateway->verify($request , $transaction->amount);
-
         if (!$transaction){
-            dd(1);
             return back();
         }
+
 
         if (is_array($result)){
             cache()->forget('payment_method');
@@ -37,5 +37,12 @@ class TransactionController extends Controller
             Order::query()->where('id' , $transaction->id)->first()->update(['status' => Order::STATUS_SUCCESS]);
             return redirect()->route('home');
         }
+    }
+
+    public function getTokenFromRequest(Request $request): mixed
+    {
+         cache()->get('payment_method') == Transaction::PAYMENT_METHOD_ZARINPAL  ?:  $token =  $request->Authority;
+         cache()->get('payment_method') == Transaction::PAYMENT_METHOD_PAY  ?:  $token =  $request->Authority;
+         return  $token;
     }
 }

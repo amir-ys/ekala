@@ -14,4 +14,15 @@ class Order extends Model
     const STATUS_PENDING = 0;
     const STATUS_SUCCESS = 1;
     const STATUS_FAILED = -1;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class);
+    }
+
 }

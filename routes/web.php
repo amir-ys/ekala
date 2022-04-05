@@ -13,6 +13,7 @@ use App\Http\Controllers\Front\TransactionController;
 use App\Http\Controllers\Panel\Banner\BannerController;
 use App\Http\Controllers\Panel\Brand\BrandController;
 use App\Http\Controllers\Panel\CouponController;
+use App\Http\Controllers\Panel\Order\OrderController as PanelOrderController;
 use App\Http\Controllers\Panel\Product\AttributeController;
 use App\Http\Controllers\Panel\Product\CategoryController;
 use App\Http\Controllers\Panel\Product\CommentController;
@@ -85,6 +86,8 @@ Route::group(
     Route::resource('products' , ProductController::class );
     Route::resource('comments' , CommentController::class )->only('index' , 'destroy');
     Route::post('comments/{comment}/change-status' , [CommentController::class , 'changeStatus'] )->name('comments.changeStatus');
+    Route::resource('orders' , PanelOrderController::class );
+
 
     //products
     Route::get('products/{product}/images' , [ProductController::class , 'uploadImagesView'] )->name('products.uploadImages.view');

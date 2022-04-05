@@ -28,11 +28,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         app()->singleton(Gateway::class , function (){
-            $oldPaymentMethod = cache()->put('payment_method' , request()->payment_method);
-            $paymentMethodRequest = request()->payment_method ? request()->payment_method : $oldPaymentMethod;
+            $paymentMethod = cache()->get('payment_method');
             $gatewayMethods =  array_keys(config('payment_method'));
             foreach ($gatewayMethods as $gatewayMethod){
-                if ($paymentMethodRequest == $gatewayMethod ){
+                if ($paymentMethod == $gatewayMethod ){
                     $className = config('payment_method.' . $gatewayMethod. '.class');
                    return new $className();
                 }

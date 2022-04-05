@@ -88,6 +88,13 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ route('panel.orders.index') }}" class="waves-effect">
+                        <i class="bx bx-slider"></i>
+                        <span key="t-banner">سفارشات  </span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->
